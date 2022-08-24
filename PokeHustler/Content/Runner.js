@@ -1,0 +1,42 @@
+window.Runners = {
+    "You": {
+        name: "Jangle Leg",
+        enr: 90,
+        maxEnr: 100,
+        money: 0,
+        order: false,
+        xp: 90,
+        maxXp: 100,
+        level: 1,
+    },
+    "Npc1": {
+        name: "You",
+        enr: 90,
+        maxEnr: 100,
+        money: 0,
+        order: false,
+        xp: 90,
+        maxXp: 100,
+        level: 1,
+    },  
+    "Npc2": {
+        name: "You",
+        enr: 90,
+        maxEnr: 100,
+        money: 0,
+        order: false,
+        xp: 90,
+        maxXp: 100,
+        level: 1,
+    },  
+    "Npc3": {
+        name: "You",
+        enr: 90,
+        maxEnr: 100,
+        money: 0,
+        order: false,
+        xp: 90,
+        maxXp: 100,
+        level: 1,
+    }
+}

@@ -1,0 +1,141 @@
+.Player {
+    width: 67px;
+    height: 14px;
+    background: url("/images/ui/combatant-plate.png") no-repeat no-repeat;
+    position:absolute;
+  }
+  
+  .Battle .Player {
+    transform: scale(2);
+    transition: opacity 0.4s;
+  }
+  .Battle .Player[data-active="false"] {
+    opacity: 0;
+  }
+  .Battle .Player[data-active="true"] {
+    opacity: 1;
+  }
+  
+  .Player[data-team="player"] {
+    left: 46px;
+    top: 70px;
+  }
+  .Player[data-team="enemy"] {
+    top: 28px;
+    right: 77px;
+  }
+  
+  .Player_character_crop {
+    position: absolute;
+    bottom: 1px;
+    left:3px;
+    width: 22px;
+    height: 12px;
+    overflow:hidden;
+  }
+  .Player_character {
+    display:block;
+    position: absolute;
+    left: -11px;
+    bottom: -7px;
+  }
+  .Battle .Player_character_crop {
+    display:none;
+  }
+  
+  .Player_name {
+    position: absolute;
+    left:-2px;
+    top:-8px;
+    white-space: nowrap;
+    background: var(--menu-font-color);
+    color: #fff;
+    font-size: 5px; /*This is only so small because the component is scaled 2x in battle which is weird */
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: 0;
+  }
+  .Player_type {
+    position: absolute;
+    left: 3px;
+    top: -2px;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .Player_life-container {
+    position: absolute;
+    left:20px;
+    top:4px;
+    width: 26px;
+    height: 3px;
+  }
+  .Player_life-container > rect {
+    transition: width 0.2s;
+  }
+  
+  .Player_xp-container {
+    position: absolute;
+    left:20px;
+    top:8px;
+    width: 26px;
+    height: 2px;
+  }
+  .Player_level {
+    position: absolute;
+    font-size: 12px;
+    right: 2px;
+    top: -1px;
+    width: 17px;
+    height: 12px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background: #a6f1ff;
+    border: 1px solid #4ce3ff;
+    margin: 0;
+  }
+  
+  .Player_status {
+    position: absolute;
+    /* width: 15px; */
+    font-size: 5px;
+    left: 20px;
+    bottom: -7px;
+    padding-left: 1em;
+    padding-right: 1em;
+    background: #68a047 ;
+    border: 1px solid #add197 ;
+    color: white;
+    margin: 0;
+    display: block
+  }
+  .Player_status[data-status="saucy"] {
+    color: red;
+  }
+  .Player_status[data-status="clumsy"] {
+    background: #582a79;
+  }
+  
+  .player1 {
+    position: absolute;
+    transform: scale(2);
+    transition: opacity 0.4s, transform 0.4s;
+    background: url(/images/characters/player1s/player1-shadow.png) no-repeat no-repeat;
+  }
+  .player1[data-team="player"] {
+    bottom: 73px;
+    left: 51px;
+  }
+  .player1[data-team="enemy"] {
+    top: 47px;
+    right: 100px;
+  }
+  .player1[data-active="false"] {
+    opacity:0;
+    transform: translate3d(0,16px,0) scale(2);
+  }
+  .player1[data-active="true"] {
+    opacity:1;
+    transform: translate3d(0,0,0) scale(2);
+  }

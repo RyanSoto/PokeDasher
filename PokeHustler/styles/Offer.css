@@ -1,0 +1,93 @@
+
+
+.iphone_screen1{
+  position:absolute;
+  width:200px;
+  height:310px;
+  border-radius:2px;
+  /* left:10px; */
+  /* top:35px; */
+  position:relative;
+  background-color:rgb(101, 0, 160);
+  margin: 0;
+  overflow:hidden;
+  }
+
+.Logo{
+  margin:0;
+  position: absolute;
+  top:2%
+  }
+.Logo img{
+  max-width: 100%;
+}
+
+/* change font size space e.g. em */
+.pay{
+  display: block;
+  margin: 0;
+  /* width: 10em; */
+    /* height: 20%; */
+  align-items: center;
+  text-align:center; 
+  border: 1px solid var(--border-color);
+  border-radius:5px;
+  background: var(--menu-background);
+  /* z-index: 1; */
+  /* font-family:inherit; */
+  /* padding: 0; */
+  padding-left: .5em;
+  padding-right: .5em; 
+  font-size: 20px; 
+
+  position:absolute;
+  left: 25%;
+  right:25%;
+  top:50%;
+}
+
+/* .KeyboardMenu button[data-button = "0"]{
+  display: flex;
+  position:relative;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  align-items: center;
+  width: 100%;
+  text-align:center;
+  -webkit-appearance: none;
+  border:0;
+  background: none;
+  height: 20px;
+  cursor:pointer;
+  font-family:inherit;
+  padding:0;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 20px;
+
+} */
+/* .KeyboardMenu button[data-button = "1"]{
+  display: flex;
+  position:relative;
+  margin: 0;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  align-items: center;
+  width: 100%;
+  text-align:center;
+  -webkit-appearance: none;
+  border:0;
+  background: none;
+  height: 20px;
+  cursor:pointer;
+  font-family:inherit;
+  padding:0;
+  padding-left: 1em;
+  padding-right: 1em; 
+  font-size: 20px; 
+
+} */
