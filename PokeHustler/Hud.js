@@ -7,7 +7,6 @@ class Hud {
         this.scoreboards.forEach(s => {
             s.update(window.playerState.players[s.id])
         })
-        console.log(playerState)
     }
 
     createElement() {

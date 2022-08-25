@@ -1,4 +1,4 @@
-class Person extends GameObject {
+class Hero extends GameObject {
   constructor(config) {
     super(config);
     this.movingProgressRemaining = 0;
@@ -105,13 +105,48 @@ class Person extends GameObject {
       }
   }
 
-
+  // this.keyB = new KeyPressListener("KeyB", () =>{
+  //   this.isBiking = false;
+  //   console.log("not biking")
+  //   this.keyB?.unbind();
+  // })
 
   updateSprite() {
-    if (this.movingProgressRemaining > 0) {
+    new KeyPressListener("KeyB", () => {
+      this.isBiking = true;
+      console.log("bike on")
+    })
+    new KeyPressListener("KeyN", () => {
+      this.isBiking = false;
+      console.log("bike off")
+    })
+    if (this.movingProgressRemaining > 0 && this.isBiking == true) {
+      this.speed = 2
+      this.directionUpdate = {
+        "up": ["y", -this.speed],
+        "down": ["y", this.speed],
+        "left": ["x", -this.speed],
+        "right": ["x", this.speed],
+      }
+    this.sprite.setAnimation("bike-"+this.direction);
+    return;
+    } else if (this.isBiking == true) {
+       this.sprite.setAnimation("bidle-"+this.direction); 
+    }   
+    else if (this.movingProgressRemaining > 0 && (this.isBiking == false || this.isBiking == null)) {
+      this.speed = 1
+      this.directionUpdate = {
+        "up": ["y", -this.speed],
+        "down": ["y", this.speed],
+        "left": ["x", -this.speed],
+        "right": ["x", this.speed],
+      }
       this.sprite.setAnimation("walk-"+this.direction);
       return;
     }
-    this.sprite.setAnimation("idle-"+this.direction);    
+    else if (this.isBiking == false || this.isBiking == null) {
+      this.sprite.setAnimation("idle-"+this.direction);   
+      return;
+    } 
   }
 }

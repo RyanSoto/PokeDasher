@@ -33,7 +33,6 @@ class OverworldEvent {
       direction: this.event.direction,
       retry: true
     })
-
     //Set up a handler to complete when correct person is done walking, then resolve the event
     const completeHandler = e => {
       if (e.detail.whoId === this.event.who) {
@@ -44,6 +43,25 @@ class OverworldEvent {
     document.addEventListener("PersonWalkingComplete", completeHandler)
 
   }
+
+  // bike(resolve) {
+  //   const who = this.map.gameObjects[ this.event.who ];
+  //   who.startBehavior({
+  //     map: this.map
+  //   }, {
+  //     type: "bike",
+  //     direction: this.event.direction,
+  //     retry: true
+  //   })
+
+  //   const completeHandler = e => {
+  //     if (e.detail.whoId === this.event.who) {
+  //       document.removeEventListener("PersonBikingComplete", completeHandler);
+  //       resolve();
+  //     }
+  //   }
+  //   document.addEventListener("PersonBikingComplete", completeHandler)
+  // }
   
   textMessage(resolve) {
 

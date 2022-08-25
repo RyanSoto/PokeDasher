@@ -56,6 +56,9 @@ class OverworldMap {
       object.id = key;
 
       let instance;
+      if (object.type == "Hero") {
+        instance = new Hero(object);
+      }
       if (object.type == "Person") {
         instance = new Person(object);
       }
@@ -134,7 +137,7 @@ window.OverworldMaps = {
     upperSrc: "/images/maps/Anywhere1Upper.png",
     configObjects: {
       hero: {
-        type: "Person",
+        type: "Hero",
         isPlayerControlled: true,
         x: utils.withGrid(12),
         y: utils.withGrid(23),
@@ -239,7 +242,7 @@ window.OverworldMaps = {
     upperSrc: "",
     configObjects: {
       hero: {
-        type: "Person",
+        type: "Hero",
         isPlayerControlled: true,
         x: utils.withGrid(-1),
         y: utils.withGrid(2),

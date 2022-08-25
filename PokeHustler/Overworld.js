@@ -56,6 +56,11 @@ class Overworld {
       ])
     }
    })
+  //  new KeyPressListener("KeyB", () => {
+  //   console.log("B pushed")
+  //   this.person = new Person(this.map.gameObjects, this.isBiking === true);
+  //   this.person.toggleBike()
+  // })
  }
 
  bindHeroPositionCheck() {

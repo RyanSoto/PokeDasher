@@ -27,7 +27,16 @@ class Sprite {
       "walk-down" : [ [1,0],[0,0],[3,0],[0,0], ],
       "walk-right": [ [1,1],[0,1],[3,1],[0,1], ],
       "walk-up"   : [ [1,2],[0,2],[3,2],[0,2], ],
-      "walk-left" : [ [1,3],[0,3],[3,3],[0,3], ]
+      "walk-left" : [ [1,3],[0,3],[3,3],[0,3], ],
+      "bike-left" : [ [1,7],[0,7],[3,7],[0,7], ],
+      "bike-down" : [ [1,4],[0,4],[3,4],[0,4], ],
+      "bike-right": [ [1,5],[0,5],[3,5],[0,5], ],
+      "bike-up"   : [ [1,6],[0,6],[3,6],[0,6], ],
+      "bidle-down" : [ [0,4] ],
+      "bidle-right": [ [0,5] ],
+      "bidle-up"   : [ [0,6] ],
+      "bidle-left" : [ [0,7] ],
+
     }
     this.currentAnimation = config.currentAnimation || "idle-down"; // config.currentAnimation || "idle-down";
     this.currentAnimationFrame = 0;
