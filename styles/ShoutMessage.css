@@ -1,0 +1,40 @@
+.ShoutMessage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:0;
+    height: 60px;
+    font-size: 12px;
+    padding: 4px;
+    background: var(--menu-background);
+    border: 1px solid var(--border-color);
+    color: var(--menu-font-color);
+}
+.ShoutMessage_p {
+    margin: 0;
+    font-size: 32px;
+}
+
+.ShoutMessage span {
+    opacity: 0;
+}
+
+.ShoutMessage span.revealed {
+    opacity: 1;
+}
+
+
+.ShoutMessage_button {
+    margin: 0;
+    font-size: 8px;
+    padding: 0px;
+    --webkit-appearance: none;
+    background:none;
+    border:0;
+    font-family: inherit;
+    cursor: pointer;
+
+    position: absolute;
+    right: 2px;
+    bottom: 0;
+}
