@@ -458,9 +458,18 @@ window.OverworldMaps = {
         src: "/images/characters/people/npc1.png",
         talking: [
           {
+            required: [ "GIT"  ],
+            events: [
+
+                { type: "textMessage", text: "Are ya gitting son?" , faceHero: "npc1"},
+                { type: "removeStoryFlag", flag: "GIT"  },
+            ]   
+        },
+          {
             events: [
               {type: "textMessage", text: "Are ya winning son?", faceHero: "npc1"},
-              {who: "npc1", type: "stand", direction: "down"}
+              {who: "npc1", type: "stand", direction: "down"},
+              { type: "addStoryFlag", flag: "GIT"  },
             ]
           }
         ],
