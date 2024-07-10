@@ -122,14 +122,15 @@ class Hero extends GameObject {
           "left": ["x", -this.speed],
           "right": ["x", this.speed],
         }}
-      })
+      }
+      )
   } 
 
 
   toggleBikeOff() { 
     new KeyPressListener("KeyN", () => {
       if (this.movingProgressRemaining === 0) {
-      // console.log("Bike Off")
+      console.log("Bike Off")
       // console.trace(this.toggleBikeOff)
       this.isBiking = false;
       this.speed = 1;
@@ -138,7 +139,8 @@ class Hero extends GameObject {
         "down": ["y", this.speed],
         "left": ["x", -this.speed],
         "right": ["x", this.speed],
-      }}
+      }
+    }
     })
   }
 
