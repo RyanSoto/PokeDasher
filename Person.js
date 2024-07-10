@@ -100,10 +100,8 @@ class Person extends GameObject {
         utils.emitEvent("PersonWalkingComplete", {
           whoId: this.id
         })
-
       }
-  }
-
+    }
 
 
   updateSprite() {

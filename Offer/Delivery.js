@@ -18,25 +18,28 @@ class Delivery extends GameObject{
         
 
         this.talking = [
-            {
-                required: [ "ORDER_ACCEPTED"  , this.storyFlag, "CONFIRMED_PICKUP"  ],
-                events: [
+            // Use this to add another prompt to pick up the order
+            // {
+            //     required: [ "ORDER_ACCEPTED"  , this.storyFlag, "CONFIRMED_PICKUP"  ],
+            //     events: [
 
-                    { type: "textMessage", text: "You grab the order" },
-                    { type: "removeStoryFlag", flag: "ORDER_ACCEPTED"  },
-                    { type: "removeStoryFlag", flag: this.storyFlag },
-                    { type: "addStoryFlag", flag: "ORDER_TAKEN" },
+            //         { type: "textMessage", text: "You grab the order" },
+            //         { type: "removeStoryFlag", flag: "ORDER_ACCEPTED"  },
+            //         { type: "removeStoryFlag", flag: this.storyFlag },
+            //         { type: "addStoryFlag", flag: "ORDER_TAKEN" },
                     
 
 
-                ]   
-            },
+            //     ]   
+            // },
             {
                 required: ["ORDER_ACCEPTED" , this.storyFlag],
                 events: [
                     { type: "textMessage", text: "Is this the right order?" },
                     { type: "textMessage", text: "Yep, This is it." },
-                    { type: "addStoryFlag", flag: "CONFIRMED_PICKUP"   },
+                    // { type: "addStoryFlag", flag: "CONFIRMED_PICKUP"   },
+                    { type: "addStoryFlag", flag: "ORDER_TAKEN" },
+
                     // { type: "addStoryFlag", flag: "JUST_TOOK"   },
                  
                 ]
@@ -45,7 +48,7 @@ class Delivery extends GameObject{
                 required: ["ORDER_ACCEPTED"],
                 events: [
                     { type: "textMessage", text: "Is this the right order?"},
-                    { type: "textMessage", text: "Nah, This ain't it chief."},
+                    { type: "textMessage", text: "Nope."},
                     // { type: "addStoryFlag", flag: this.storyFlag   },
                  
                 ]
