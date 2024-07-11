@@ -3,21 +3,24 @@ class OverworldMap {
     this.overworld = null;
     this.gameObjects = {}; // live objects are in here
     this.configObjects = config.configObjects; // configuration content
-
-
+    
+    
     this.cutsceneSpaces = config.cutsceneSpaces || {};
     this.walls = config.walls || {};
-
+    
     this.lowerImage = new Image();
     this.lowerImage.src = config.lowerSrc;
-
+    
     this.upperImage = new Image();
     this.upperImage.src = config.upperSrc;
-
+    
     this.isCutscenePlaying = false;
     this.isPaused = false;
+    
   }
 
+  
+  
   drawLowerImage(ctx, cameraPerson) {
     ctx.drawImage(
       this.lowerImage, 
@@ -133,8 +136,8 @@ class OverworldMap {
   }
 
 
-
 }
+
 
 window.OverworldMaps = {
   Starville: {
@@ -400,13 +403,19 @@ window.OverworldMaps = {
       }),
 
     },
-    walls: {
-      [utils.asGridCoord(28,20)] : true,
-      [utils.asGridCoord(27,20)] : true,
-      [utils.asGridCoord(26,20)] : true,
-      [utils.asGridCoord(25,20)] : true,
-      [utils.asGridCoord(23,20)] : true,
-    },
+
+    // grids from tile are off x: +10 y: + 6
+    
+    walls: 
+    collisionCoords = utils.collisionDetection(anywhereCollision)
+    // {
+      // [utils.asGridCoord(28,20)] : true,
+      // [utils.asGridCoord(27,20)] : true,
+      // [utils.asGridCoord(26,20)] : true,
+      // [utils.asGridCoord(25,20)] : true,
+      // [utils.asGridCoord(23,20)] : true,
+    // }
+    ,
 
     cutsceneSpaces: {
       [utils.asGridCoord(24,20)]: [

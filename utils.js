@@ -38,6 +38,21 @@ const utils = {
       detail
     });
     document.dispatchEvent(event);
-  }
-  
+  },
+  collisionDetection(collisionArray) {
+    const collisionsMap = [];
+    for (let i = 0; i < collisionArray.length; i += 128) {
+      collisionsMap.push(collisionArray.slice(i, 128 + i))
+    };
+    let coordinates = [];
+    for (let i = 0; i < collisionsMap.length; i++) {
+      const row = collisionsMap[i];
+      for (let j = 0; j < row.length; j++) {
+        if (row[j] !== 0) {
+          coordinates = { ...coordinates, [utils.asGridCoord(j - 10, i - 6)] : true}
+        }
+      }
+    }
+    return coordinates;
+  }  
 }
