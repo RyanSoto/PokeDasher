@@ -46,10 +46,13 @@ class Overworld {
 
  bindActionInput() {
   new KeyPressListener("Enter", () => {
-     //Is there a person here to talk to?
-     this.map.checkForActionCutscene()
-     console.log("enter")
-  })
+    //Is there a person here to talk to?
+    this.map.checkForActionCutscene()
+ })
+ new KeyPressListener("KeyF", () => {
+  //Is there a person here to talk to?
+  this.map.checkForActionCutscene()
+})
   new KeyPressListener("KeyQ", () => {
     //Pull up/Put away phone
     if (!this.map.isCutscenePlaying) {

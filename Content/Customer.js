@@ -28,8 +28,8 @@ window.Customer = {
         address: "101",
         dropOffVal: "DROPOFF_0",
         xp: 1.0,
-        // src: "/images/characters/pizzas/s001.png",
-        // icon: "/images/icons/spicy.png",
+        // src: "./images/characters/pizzas/s001.png",
+        // icon: "./images/icons/spicy.png",
         },
     "c002": {
         Tip:1.0,

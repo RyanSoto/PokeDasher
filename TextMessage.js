@@ -29,6 +29,10 @@ class TextMessage {
             
             this.done();
         })
+        this.actionListener = new KeyPressListener("KeyF", () => {
+            
+            this.done();
+        })
     }
 
     done() {

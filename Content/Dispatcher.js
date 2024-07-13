@@ -14,8 +14,8 @@ window.Dispatcher = {
     distPay:1,
     Tip:1.2,
     xp: 1.5,
-    src: "/images/characters/Grubhub-Logo.png",
-    // icon: "/images/icons/spicy.png",
+    src: "./images/characters/Grubhub-Logo.png",
+    // icon: "./images/icons/spicy.png",
     },
 "D2": {
     delName: "UberEats",
@@ -24,8 +24,8 @@ window.Dispatcher = {
     distPay:1,
     Tip:1.2,
     xp: 1.5,
-    // src: "/images/characters/pizzas/s001.png",
-    // icon: "/images/icons/spicy.png",
+    // src: "./images/characters/pizzas/s001.png",
+    // icon: "./images/icons/spicy.png",
     },
 "D3": {
     delName: "DoorDash",
@@ -34,7 +34,7 @@ window.Dispatcher = {
     distPay:1,
     Tip:1.2,
     xp: 1.5,
-    // src: "/images/characters/pizzas/s001.png",
-    // icon: "/images/icons/spicy.png",
+    // src: "./images/characters/pizzas/s001.png",
+    // icon: "./images/icons/spicy.png",
     }
 }

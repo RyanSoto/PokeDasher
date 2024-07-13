@@ -142,8 +142,8 @@ class OverworldMap {
 window.OverworldMaps = {
   Starville: {
     id: "Starville",
-    lowerSrc: "/images/maps/Anywhere1.png",
-    upperSrc: "/images/maps/AnywhereUpper.png",
+    lowerSrc: "./images/maps/Anywhere1.png",
+    upperSrc: "./images/maps/AnywhereUpper.png",
     configObjects: {
       hero: {
         type: "Hero",
@@ -157,7 +157,7 @@ window.OverworldMaps = {
         useShadow: true,
         x: utils.withGrid(26),
         y: utils.withGrid(21),
-        src: "/images/characters/people/npc1.png",
+        src: "./images/characters/people/npc1.png",
         behaviorLoop: [
           { type: "stand",  direction: "left", time: 800 },
           { type: "stand",  direction: "up", time: 800 },
@@ -179,7 +179,7 @@ window.OverworldMaps = {
         useShadow: true,
         x: utils.withGrid(10),
         y: utils.withGrid(21),
-        src: "/images/characters/people/npc1.png",
+        src: "./images/characters/people/npc1.png",
         behaviorLoop: [
           {type: "stand", direction: "up", time: 800},
           {type: "walk", direction: "up"},
@@ -408,6 +408,7 @@ window.OverworldMaps = {
     
     walls: 
     collisionCoords = utils.collisionDetection(anywhereCollision)
+
     // {
       // [utils.asGridCoord(28,20)] : true,
       // [utils.asGridCoord(27,20)] : true,
@@ -450,7 +451,7 @@ window.OverworldMaps = {
   },
   House0: {
     id: "House0",
-    lowerSrc: "/images/maps/House0.png",
+    lowerSrc: "./images/maps/House0.png",
     upperSrc: "",
     configObjects: {
       hero: {
@@ -464,7 +465,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(-2),
         y: utils.withGrid(1),
-        src: "/images/characters/people/npc1.png",
+        src: "./images/characters/people/npc1.png",
         talking: [
           {
             required: [ "GIT"  ],
@@ -490,6 +491,10 @@ window.OverworldMaps = {
         ]
       },
     },
+
+    walls: 
+    collisionCoords = utils.collisionDetection(house0Collision),
+    
     cutsceneSpaces: {
 
       [utils.asGridCoord(-6,3)]: [
@@ -510,7 +515,7 @@ window.OverworldMaps = {
       // npc2: new GameObject({
       //   x: 10,
       //   y: 8,
-      //   src: "/images/characters/people/npc1.png"
+      //   src: "./images/characters/people/npc1.png"
       // })
     }
   }

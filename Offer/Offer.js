@@ -33,7 +33,7 @@ class Offer {
     // }
 
     
-        // generate offer random dispatcher + random restaurant + random customer
+    // generate offer random dispatcher + random restaurant + random customer
     genOffer() {
 
         var formatter = new Intl.NumberFormat('en-US', {
@@ -104,7 +104,7 @@ class Offer {
 
                     ]);
                     console.log("Accepted Offer");
-                    playerState.players.p1.orders = {[this.orderID] : [this.resName,this.address]};
+                    playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
                     console.log(playerState.players.p1.orders );
                     utils.emitEvent("PlayerStateUpdated"); 
                     playerState.players.p1.money = this.pay + playerState.players.p1.money;
@@ -131,22 +131,36 @@ class Offer {
         <div class="iphone_screen1">
         
         <div class="Logo">
-            <img src="${'/images/characters/Grubhub-Logo.png'}" alt="Logo" />
+            <img src="${'./images/characters/Grubhub-Logo.png'}" alt="Logo" />
             </div>
             </div>
         <p class="resName">${this.resName}</p>
         <p class="address">Delivery to : ${this.address}</p>
         <p class="pay">${this.displayPay}</p>
+        `)
+    }
 
+    async createElementMem() {
+        this.element = document.createElement("div");
+        this.element.classList.add("Offer");
+        this.element.innerHTML = (`
+        <div class="iphone_screen1">
+        
+        <div class="Logo">
+            <img src="${'./images/characters/Grubhub-Logo.png'}" alt="Logo" />
+            </div>
+            </div>
+        <p class="resName">${playerState.players.p1.orders[0]}</p>
+        <p class="address">Delivery to : ${playerState.players.p1.orders[1]}</p>
+        <p class="pay">${playerState.players.p1.orders[2]}</p>
 
         `)
-
-
+        // <p class="pay">${this.displayPay}</p>
     }
 
     close() {
         this.keyQ?.unbind();
-        this.offerMenu.end();
+        this.offerMenu ? this.offerMenu.end(): null;
         this.element.remove();
         // this.onComplete();
     }
@@ -174,6 +188,13 @@ class Offer {
         
     }
 
+    if (playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] || playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
+        this.createElementMem();
+        document.querySelector(".iphone_screen").appendChild(this.element);
+        this.keyQ = new KeyPressListener("KeyQ", () =>{
+            this.close();
+        })
+    }
 
 
     }

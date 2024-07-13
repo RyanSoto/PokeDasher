@@ -32,26 +32,26 @@ class Destination extends GameObject{
                 ]   
             },
             {
-            required: ["ORDER_TAKEN",  ] ,
-            events: [
-            { type: "textMessage", text:  "They are not expecting an order."},
+                required: ["ORDER_TAKEN",  ] ,
+                events: [
+                { type: "textMessage", text:  "They are not expecting an order."},
 
-            ]   
-        },
-        {
-            required: ["ORDER_ACCEPTED",  ] ,
-            events: [
-            { type: "textMessage", text:  "You have not picked up an order yet."},
+                ]   
+            },
+            {
+                required: ["ORDER_ACCEPTED",  ] ,
+                events: [
+                { type: "textMessage", text:  "You have not picked up an order yet."},
 
-            ]   
-        },
-        {
-            required: ["RECENT_DELIVERY", config.storyFlag],
-            events: [
-            { type: "textMessage", text: "No order to deliver." },
+                ]   
+            },
+            {
+                required: ["RECENT_DELIVERY", config.storyFlag],
+                events: [
+                { type: "textMessage", text: "No order to deliver." },
 
-            ]   
-        },
+                ]   
+            },
             {
                 // required: [this.storyFlag],
                 events: [

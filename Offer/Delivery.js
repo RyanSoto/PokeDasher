@@ -38,6 +38,7 @@ class Delivery extends GameObject{
                     { type: "textMessage", text: "Is this the right order?" },
                     { type: "textMessage", text: "Yep, This is it." },
                     // { type: "addStoryFlag", flag: "CONFIRMED_PICKUP"   },
+                    { type: "removeStoryFlag", flag: "ORDER_ACCEPTED"  },
                     { type: "addStoryFlag", flag: "ORDER_TAKEN" },
 
                     // { type: "addStoryFlag", flag: "JUST_TOOK"   },
