@@ -6,7 +6,22 @@ class Overworld {
    this.map = null;
    this.hero = null;
  }
+
  gameLoopStepWork(delta){
+
+      if (window.playerState.players.p1.money >= 10 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
+        // console.log(window.playerState.players.p1.money)
+        this.map.isPaused = true
+
+        this.map.startCutscene([
+          { type: "shoutMessage", text:"Congrats on nothing!"} , 
+          { type: "shoutMessage", text:"The End?"} , 
+          { type: "addStoryFlag", flag: "END_GAME" },
+        ])
+        // this.map.isPaused = false
+
+      }
+
       //Clear off the canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -103,7 +118,18 @@ class Overworld {
 
   }
  }
+ endGame() {
+  console.log("Game Over")
+  this.map.isPaused = true
 
+  this.map.startCutscene([
+    { type: "shoutMessage", text:"Congrats on nothing!"} , 
+    { type: "shoutMessage", text:"The End?"} , 
+  ])
+
+
+
+  }
 
  init() {
   this.hud = new Hud();
@@ -118,6 +144,8 @@ class Overworld {
   this.directionInput.init();
 
   this.startGameLoop();
+
+
   this.map.startCutscene([
 
     //{type: "battle" }

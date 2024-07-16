@@ -24,12 +24,10 @@ class DirectionInput {
   init() {
     document.addEventListener("keydown", e => {
       const dir = this.map[e.code];
-      console.log(dir)
 
       if (dir && this.heldDirections.indexOf(dir) === -1) {
         this.heldDirections.unshift(dir);
       }
-      console.log(this.heldDirections)
     });
 
     document.addEventListener("keyup", e => {
@@ -38,8 +36,6 @@ class DirectionInput {
       if (index > -1) {
         this.heldDirections.splice(index, 1);
       }
-      console.log('keyup', this.heldDirections)
-
     })
     
     document.addEventListener("touchstart", e => {
@@ -50,13 +46,11 @@ class DirectionInput {
         const x = touch.clientX;
         const y = touch.clientY;
         const dir = calculateDirection(x, y);
-        // console.log(dir);
         
         if (dir && this.heldDirections.indexOf(dir) === -1) {
           this.heldDirections.unshift(dir);
         }
          
-        console.log(this.heldDirections)
       });
 
     document.addEventListener("touchend", e => {

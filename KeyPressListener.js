@@ -5,7 +5,6 @@ class KeyPressListener {
             if(event.code === keyCode) {
                 if (keySafe) {
                     keySafe = false;
-                    // console.log("Key Pressed: " + keyCode);
                     callback();
                 }
             }
