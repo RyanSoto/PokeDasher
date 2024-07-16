@@ -6,9 +6,7 @@ class Overworld {
    this.map = null;
    this.hero = null;
  }
-
-  startGameLoop() {
-    const step = () => {
+ gameLoopStepWork(delta){
       //Clear off the canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -18,6 +16,7 @@ class Overworld {
       //Update all objects
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
+          delta,
           arrow: this.directionInput.direction,
           map: this.map,
         })
@@ -35,13 +34,32 @@ class Overworld {
 
       //Draw Upper layer
       this.map.drawUpperImage(this.ctx, cameraPerson);
+ }
+ 
+  startGameLoop() {
+
+    let previousMs;
+    const step = 1/60;
+
+    const stepFN = (timestampMs) => {
       
-      if (!this.map.isPaused)
-        requestAnimationFrame(() => {
-          step();   
-      })
+      if (this.map.isPaused) {
+        return;
+      }
+      if (previousMs === undefined) {
+        previousMs = timestampMs;
+      }
+      let delta = (timestampMs - previousMs) / 1000;
+      while (delta >= step) {
+        //Do work
+        this.gameLoopStepWork(delta);
+        delta -= step;
+      }
+      previousMs = timestampMs - delta * 1000;
+
+        requestAnimationFrame(stepFN)
     }
-    step();
+    requestAnimationFrame(stepFN);
  }
 
  bindActionInput() {
