@@ -24,9 +24,10 @@ class Offer {
     calcTip(resTip){
         this.tipCal = resTip * this.tip        
     }
-    calcTip(cusTip){
-        this.tipCal = cusTip * this.tip        
-    }
+
+    // calcTip(cusTip){
+    //     this.tipCal = cusTip * this.tip        
+    // }
 
     // get xp(){
         
@@ -88,7 +89,6 @@ class Offer {
     }
 
     getOptions(pageKey) {
-        
 
         if (pageKey === "root") {
             return [
@@ -105,9 +105,9 @@ class Offer {
                     ]);
                     console.log("Accepted Offer");
                     playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
-                    console.log(playerState.players.p1.orders );
+                    console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
                     utils.emitEvent("PlayerStateUpdated"); 
-                    playerState.players.p1.money = this.pay + playerState.players.p1.money;
+                    playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
                     
                     this.close();
                     

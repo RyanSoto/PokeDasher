@@ -10,7 +10,6 @@ class Overworld {
  gameLoopStepWork(delta){
 
       if (window.playerState.players.p1.money >= 10 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
-        // console.log(window.playerState.players.p1.money)
         this.map.isPaused = true
 
         this.map.startCutscene([
@@ -54,7 +53,7 @@ class Overworld {
   startGameLoop() {
 
     let previousMs;
-    const step = 1/60;
+    const step = 1/120;
 
     const stepFN = (timestampMs) => {
       

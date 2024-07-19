@@ -11,6 +11,7 @@ class PlayerState {
             maxXp: 100,
             level: 1,
             orders: [],
+            potentialPay: 0,
         },   
       }
       this.lineup = ["p1"];
