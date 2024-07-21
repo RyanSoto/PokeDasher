@@ -106,8 +106,8 @@ class Offer {
                     console.log("Accepted Offer");
                     playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
                     console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
-                    utils.emitEvent("PlayerStateUpdated"); 
                     playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
+                    utils.emitEvent("PlayerStateUpdated"); 
                     
                     this.close();
                     

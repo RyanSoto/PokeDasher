@@ -4,10 +4,10 @@ class PlayerState {
       this.players = {
         "p1": {
             playerId: "You",
-            enr: 50,
+            enr: 100,
             maxEnr: 100,
             money: 0,
-            xp: 90,
+            xp: 100,
             maxXp: 100,
             level: 1,
             orders: [],

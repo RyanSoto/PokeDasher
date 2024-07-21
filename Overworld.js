@@ -15,6 +15,7 @@ class Overworld {
         this.map.startCutscene([
           { type: "shoutMessage", text:"Congrats on nothing!"} , 
           { type: "shoutMessage", text:"The End?"} , 
+          { type: "shoutMessage", text:"Press Q to continue."} , 
           { type: "addStoryFlag", flag: "END_GAME" },
         ])
         // this.map.isPaused = false
