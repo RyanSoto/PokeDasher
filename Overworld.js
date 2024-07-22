@@ -9,7 +9,7 @@ class Overworld {
 
  gameLoopStepWork(delta){
 
-      if (window.playerState.players.p1.money >= 10 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
+      if (window.playerState.players.p1.money >= 100 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
         this.map.isPaused = true
 
         this.map.startCutscene([
@@ -19,6 +19,8 @@ class Overworld {
           { type: "addStoryFlag", flag: "END_GAME" },
         ])
         // this.map.isPaused = false
+        window.playerState.players.p1.money -= 100
+        utils.emitEvent("PlayerStateUpdated"); 
 
       }
 

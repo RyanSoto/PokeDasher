@@ -55,13 +55,7 @@ class Hero extends GameObject {
       if (state.map.isSpaceTaken(this.x, this.y, this.direction) && this.isBiking === true) {
 
         console.log("Bike Bump")
-        // state.map.startCutscene([
-        //   { who: "hero", type: "walk",  direction: -this.direction },
-        // ])
         this.bikeBump(state)
-        window.playerState.players.p1.enr -= 5;
-        utils.emitEvent("PlayerStateUpdated"); 
-
         behavior.retry && setTimeout(() => {
           this.startBehavior(state, behavior)
         }, 10);
@@ -177,6 +171,12 @@ class Hero extends GameObject {
           direction: "up"
         })
       }
+      window.playerState.players.p1.enr -= 20;
+      utils.emitEvent("PlayerStateUpdated"); 
+      state.map.startCutscene([
+        { type: "textMessage", text:"Oof!"} , 
+      ])
+
       this.updateSprite(state);
     }
   }

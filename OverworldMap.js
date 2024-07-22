@@ -199,8 +199,10 @@ window.OverworldMaps = {
           {
             required: [ "TELL_BIKE_ON"  ],
             events: [
-                { type: "textMessage", text: "Oh you got to go fast?" , faceHero: "npc2"},
-                { type: "textMessage", text: "Well then press B to ride your bike." , faceHero: "npc2"},
+                { type: "textMessage", text: "Oh you want to go fast? Press B to ride your bike." , faceHero: "npc2"},
+                { type: "textMessage", text: "Be careful though." , faceHero: "npc2"},
+                { type: "textMessage", text: "If you bump something while you're on your bike" , faceHero: "npc2"},
+                { type: "textMessage", text: "You will lose some health." , faceHero: "npc2"},
                 { type: "removeStoryFlag", flag: "TELL_BIKE_ON"  },
                 { type: "addStoryFlag", flag: "TELL_BIKE_OFF" },
             ]   
@@ -468,18 +470,28 @@ window.OverworldMaps = {
         src: "./images/characters/people/npc1.png",
         talking: [
           {
-            required: [ "GIT"  ],
+            required: [ "GIT", "RENT_WARNING"  ],
             events: [
 
-                { type: "textMessage", text: "Are ya gitting son?" , faceHero: "npc1"},
+                { type: "textMessage", text: "Are ya winning son?" , faceHero: "npc1"},
                 { type: "removeStoryFlag", flag: "GIT"  },
             ]   
-        },
+        },          {
+          required: [ "RENT_WARNING"  ],
+          events: [
+
+              { type: "textMessage", text: "You can do it. I believe in you!" , faceHero: "npc1"},
+              { type: "addStoryFlag", flag: "GIT"  },
+          ]   
+      },
           {
             events: [
-              {type: "textMessage", text: "Are ya winning son?", faceHero: "npc1"},
+              {type: "textMessage", text: "I have some bad news my child.", faceHero: "npc1"},
+              {type: "textMessage", text: "Ever since the accident I am unable to work.", faceHero: "npc1"},
+              {type: "textMessage", text: "I will continue to teach myself coding...", faceHero: "npc1"},
+              {type: "textMessage", text: "But it will be up to you to pay the bills.", faceHero: "npc1"},
               {who: "npc1", type: "stand", direction: "down"},
-              { type: "addStoryFlag", flag: "GIT"  },
+              { type: "addStoryFlag", flag: "RENT_WARNING"  },
             ]
           }
         ],
