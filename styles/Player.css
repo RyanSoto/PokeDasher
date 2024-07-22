@@ -121,7 +121,7 @@
     position: absolute;
     transform: scale(2);
     transition: opacity 0.4s, transform 0.4s;
-    background: url(/images/characters/player1s/player1-shadow.png) no-repeat no-repeat;
+    background: url(../images/characters/player1s/player1-shadow.png) no-repeat no-repeat;
   }
   .player1[data-team="player"] {
     bottom: 73px;
