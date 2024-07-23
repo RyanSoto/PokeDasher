@@ -144,7 +144,7 @@ class Hero extends GameObject {
 
   bikeBump(state) {
     if (this.movingProgressRemaining > 0) {
-      // this.updatePosition();
+      this.updatePosition();
     } else {
       //Case: We're keyboard ready and have an arrow pressed
       if (!state.map.isCutscenePlaying && this.isPlayerControlled && state.arrow == "right") {
@@ -171,13 +171,22 @@ class Hero extends GameObject {
           direction: "up"
         })
       }
-      window.playerState.players.p1.enr -= 20;
+      window.playerState.players.p1.enr -= 10;
       utils.emitEvent("PlayerStateUpdated"); 
+      if (window.playerState.players.p1.enr > 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
       state.map.startCutscene([
-        { type: "textMessage", text:"Oof!"} , 
+        { type: "textMessage", text:"Oof!"} ,
       ])
-
+    }
       this.updateSprite(state);
+      if (window.playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
+
+        state.map.startCutscene([
+          { type: "shoutMessage", text:"You didn't follow proto"} , 
+          { type: "shoutMessage", text:"You're done!"} , 
+          { type: "addStoryFlag", flag: "DEATH" },
+        ])
+      }
     }
   }
 
@@ -230,35 +239,6 @@ class Hero extends GameObject {
     }
     })
   }
-
-  //   toggleBike() { 
-  //   new KeyPressListener("KeyB", () => {
-      
-  //     if (this.movingProgressRemaining === 0 && this.isBiking === false) {
-  //       console.log("Bike Off")
-  //       // console.trace(this.toggleBikeOff)
-  //       this.isBiking = true;
-  //       this.speed = 4;
-  //       this.directionUpdate = {
-  //         "up": ["y", -this.speed],
-  //         "down": ["y", this.speed],
-  //         "left": ["x", -this.speed],
-  //         "right": ["x", this.speed],
-  //       }
-  //     }
-  //     else {
-  //       console.log("Bike On")
-  //       // console.trace(this.toggleBikeOff)
-  //       this.isBiking = false;
-  //       this.speed = 1;
-  //       this.directionUpdate = {
-  //         "up": ["y", -this.speed],
-  //         "down": ["y", this.speed],
-  //         "left": ["x", -this.speed],
-  //         "right": ["x", this.speed],
-  //       }}
-  //     })
-  // } 
 
   updateSprite() {
 

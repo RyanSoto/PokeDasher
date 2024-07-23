@@ -127,6 +127,7 @@ class OverworldEvent {
     const phone = new Phone({
       // dispatcher: Dispatcher[this.event.dispatcherId],
       // restaurant: Restaurant[this.event.restaurantId],
+      
       onComplete: () => {
         resolve();
         this.map.isPaused = false;
@@ -148,11 +149,21 @@ class OverworldEvent {
   }
 
   finishDelivery(resolve){
-    const finish = new FinishDelivery();
-    finish.init();
+    playerState.players.p1.money = playerState.players.p1.potentialPay
+    console.log("Delivery complete");
+    utils.emitEvent("PlayerStateUpdated");       
     resolve();
     }
   
+  death(resolve){
+    window.playerState.players.p1.enr = 100
+    if (window.playerState.players.p1.money >= 50) {
+      window.playerState.players.p1.money -= 50
+    }
+    else{window.playerState.players.p1.money = 0}
+    utils.emitEvent("PlayerStateUpdated"); 
+    resolve();
+  } 
 
   init() {
     return new Promise(resolve => {

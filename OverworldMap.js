@@ -486,7 +486,7 @@ window.OverworldMaps = {
       },
           {
             events: [
-              {type: "textMessage", text: "I have some bad news my child.", faceHero: "npc1"},
+              {type: "textMessage", text: "I have some bad news buddy.", faceHero: "npc1"},
               {type: "textMessage", text: "Ever since the accident I am unable to work.", faceHero: "npc1"},
               {type: "textMessage", text: "I will continue to teach myself coding...", faceHero: "npc1"},
               {type: "textMessage", text: "But it will be up to you to pay the bills.", faceHero: "npc1"},

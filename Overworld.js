@@ -8,18 +8,29 @@ class Overworld {
  }
 
  gameLoopStepWork(delta){
+      //Check for 0 health condition
+      if (window.playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
 
-      if (window.playerState.players.p1.money >= 100 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
-        this.map.isPaused = true
+        this.startMap(window.OverworldMaps.Starville);
+
+        this.map.startCutscene([
+          { type: "death"},
+          { type: "removeStoryFlag", flag: "DEATH" },
+          { type: "textMessage", text:"You paid the price for not following proto buddy."} , 
+        ])
+      }
+
+      //Check for end game condition
+      if (window.playerState.players.p1.money >= 50 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
 
         this.map.startCutscene([
           { type: "shoutMessage", text:"Congrats on nothing!"} , 
           { type: "shoutMessage", text:"The End?"} , 
-          { type: "shoutMessage", text:"Press Q to continue."} , 
           { type: "addStoryFlag", flag: "END_GAME" },
         ])
-        // this.map.isPaused = false
-        window.playerState.players.p1.money -= 100
+
+
+        window.playerState.players.p1.money -= 10
         utils.emitEvent("PlayerStateUpdated"); 
 
       }

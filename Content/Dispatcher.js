@@ -14,7 +14,7 @@ window.Dispatcher = {
     distPay:1,
     Tip:1.2,
     xp: 1.5,
-    src: "./images/characters/Grubhub-Logo.png",
+    // src: "./images/characters/Grubhub-Logo.png",
     // icon: "./images/icons/spicy.png",
     },
 "D2": {

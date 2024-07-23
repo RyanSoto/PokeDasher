@@ -52,8 +52,8 @@ class Phone {
         console.log(playerState.players.p1.orders);
         container.appendChild(this.element);
         
-            this.offer = new Offer({});
-            this.offer.init(container);
+        this.offer = new Offer({});
+        this.offer.init(container);
         
         utils.wait(200);
         this.keyQ = new KeyPressListener("KeyQ", () =>{

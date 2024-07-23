@@ -140,7 +140,7 @@ class Offer {
         `)
     }
 
-    async createElementMem() {
+    createElementMemory() {
         this.element = document.createElement("div");
         this.element.classList.add("Offer");
         this.element.innerHTML = (`
@@ -189,7 +189,7 @@ class Offer {
     }
 
     if (playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] || playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
-        this.createElementMem();
+        this.createElementMemory();
         document.querySelector(".iphone_screen").appendChild(this.element);
         this.keyQ = new KeyPressListener("KeyQ", () =>{
             this.close();
