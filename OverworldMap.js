@@ -529,5 +529,316 @@ window.OverworldMaps = {
       //   y: 8,
       //   src: "./images/characters/people/npc1.png"
       // })
-    }
-  }
+    },
+  StarvilleRevive: {
+    id: "Starville",
+    lowerSrc: "./images/maps/Anywhere1.png",
+    upperSrc: "./images/maps/AnywhereUpper.png",
+    configObjects: {
+      hero: {
+        type: "Hero",
+        useShadow: true,
+        isPlayerControlled: true,
+        x: utils.withGrid(73),
+        y: utils.withGrid(43),
+      },
+      npc1: {
+        type:"Person",
+        useShadow: true,
+        x: utils.withGrid(26),
+        y: utils.withGrid(21),
+        src: "./images/characters/people/npc1.png",
+        behaviorLoop: [
+          { type: "stand",  direction: "left", time: 800 },
+          { type: "stand",  direction: "up", time: 800 },
+          { type: "stand",  direction: "right", time: 1200 },
+          { type: "stand",  direction: "down", time: 300 },
+        ],
+        talking: [
+          {
+            events: [
+              {type: "textMessage", text: "I sure hope there is a delivery person working today.", faceHero: "npc1"},
+              {type: "textMessage", text: "My stomach is grumbling."},
+              // {who: "hero", type: "walk", direction: "down"},
+            ]
+          }
+        ]
+      },
+      npc2: {
+        type:"Person",
+        useShadow: true,
+        x: utils.withGrid(10),
+        y: utils.withGrid(21),
+        src: "./images/characters/people/npc1.png",
+        behaviorLoop: [
+          {type: "stand", direction: "up", time: 800},
+          {type: "walk", direction: "up"},
+          {type: "stand", direction: "up", time: 1600},
+          {type: "walk", direction: "down"},
+          {type: "stand", direction: "down", time:1200},
+        ],
+        talking: [
+          {
+            required: [ "TELL_BIKE_OFF"  ],
+            events: [
+
+                { type: "textMessage", text: "Press N to get off your bike." , faceHero: "npc2"},
+                { type: "removeStoryFlag", flag: "TELL_BIKE_OFF"  },
+            ]   
+        },
+          {
+            required: [ "TELL_BIKE_ON"  ],
+            events: [
+                { type: "textMessage", text: "Oh you want to go fast? Press B to ride your bike." , faceHero: "npc2"},
+                { type: "textMessage", text: "Be careful though." , faceHero: "npc2"},
+                { type: "textMessage", text: "If you bump something while you're on your bike" , faceHero: "npc2"},
+                { type: "textMessage", text: "You will lose some health." , faceHero: "npc2"},
+                { type: "removeStoryFlag", flag: "TELL_BIKE_ON"  },
+                { type: "addStoryFlag", flag: "TELL_BIKE_OFF" },
+            ]   
+        },
+          {
+            events: [
+              {type: "textMessage", text: "Are you trying to make some money?", faceHero: "npc2"},
+              {type: "textMessage", text: "You can press Q to pull up your phone and check for offers from GrubHub."},
+              { type: "addStoryFlag", flag: "TELL_BIKE_ON" },
+            ]
+          }
+        ]
+      },
+        BigSign0: ({
+        type: "BigSign",
+        src: "images/Objects/bigsign1left.png",
+        x: utils.withGrid(47), //19
+        y: utils.withGrid(22), //35
+        // storyFlag: "HAVEREAD",
+
+      }),
+      BigSign1: ({
+        type: "BigSign",
+        src: "images/Objects/bigsign1right.png",
+        x: utils.withGrid(48), //19
+        y: utils.withGrid(22), //35
+        // storyFlag: "HAVEREAD",
+
+      }),
+      pickUp0: ({
+        type: "Delivery",
+        x: utils.withGrid(64), //64
+        y: utils.withGrid(19), //19
+        storyFlag: "PICKUP_0"
+      }),
+      Sign0: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(60), 
+        y: utils.withGrid(19),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Dairy King", },
+            ]
+          }
+        ]
+      }),
+      pickUp1: ({
+        type: "Delivery",
+        x: utils.withGrid(67), //19
+        y: utils.withGrid(32), //35
+        storyFlag: "PICKUP_1"
+      }),
+      Sign1: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(63), 
+        y: utils.withGrid(32),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "WacArnolD's", },
+            ]
+          }
+        ]
+      }),
+      pickUp2: ({
+        type: "Delivery",
+        x: utils.withGrid(76), //19
+        y: utils.withGrid(19), //35
+        storyFlag: "PICKUP_2"
+      }),
+      Sign2: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(72), 
+        y: utils.withGrid(19),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Tropical Curry's", },
+            ]
+          }
+        ]
+      }),
+      pickUp3: ({
+        type: "Delivery",
+        x: utils.withGrid(83), //19
+        y: utils.withGrid(33), //35
+        storyFlag: "PICKUP_3"
+      }),
+      Sign3: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(79), 
+        y: utils.withGrid(33),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Brother's BBQ", },
+            ]
+          }
+        ]
+      }),
+      pickUp4: ({
+        type: "Delivery",
+        x: utils.withGrid(85), //19
+        y: utils.withGrid(16), //35
+        storyFlag: "PICKUP_4"
+      }),
+      Sign4: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(83), 
+        y: utils.withGrid(16),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Xian's Noodle House", },
+            ]
+          }
+        ]
+      }),
+      dropOff0: ({
+        type: "Destination",
+        x: utils.withGrid(19), //65
+        y: utils.withGrid(35), //19
+        storyFlag: "DROPOFF_0"
+      }),
+      addressSign0: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(21), 
+        y: utils.withGrid(35),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "101", },
+            ]
+          }
+        ]
+      }),
+      dropOff1: ({
+        type: "Destination",
+        x: utils.withGrid(36), //65
+        y: utils.withGrid(21), //19
+        storyFlag: "DROPOFF_1"
+      }),
+      addressSign1: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(34), 
+        y: utils.withGrid(21),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "104", },
+            ]
+          }
+        ]
+      }),
+      dropOff2: ({
+        type: "Destination",
+        x: utils.withGrid(27), //65
+        y: utils.withGrid(21), //19
+        storyFlag: "DROPOFF_2"
+      }),
+      addressSign2: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(23), 
+        y: utils.withGrid(21),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "102", },
+            ]
+          }
+        ]
+      }),
+      dropOff3: ({
+        type: "Destination",
+        x: utils.withGrid(30), //65
+        y: utils.withGrid(35), //19
+        storyFlag: "DROPOFF_3"
+      }),
+      addressSign3: ({
+        type: "Sign",
+        src: "images/Objects/sign.png",
+        x: utils.withGrid(28), 
+        y: utils.withGrid(35),
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "103", },
+            ]
+          }
+        ]
+      }),
+
+    },
+
+    // grids from tile are off x: +10 y: + 6
+    
+    walls: 
+    collisionCoords = utils.collisionDetection(anywhereCollision)
+
+    // {
+      // [utils.asGridCoord(28,20)] : true,
+      // [utils.asGridCoord(27,20)] : true,
+      // [utils.asGridCoord(26,20)] : true,
+      // [utils.asGridCoord(25,20)] : true,
+      // [utils.asGridCoord(23,20)] : true,
+    // }
+    ,
+
+    cutsceneSpaces: {
+      [utils.asGridCoord(24,20)]: [
+        {
+          events: [
+
+            { who: "npc1", type: "walk", direction: "left" },
+            { who: "npc1", type: "walk", direction: "left" },
+            { who: "npc1", type: "stand", direction: "up", time: 200 },
+            { type: "textMessage", text: "Hey this is a private residence, man." },
+            { who: "npc1", type: "walk", direction: "right" },
+            { who: "npc1", type: "walk", direction: "right" },
+            { who: "hero", type: "walk", direction: "down" },
+
+          ]
+        }
+      ],
+      [utils.asGridCoord(12,20)]: [
+        {
+          events: [
+
+            { type: "changeMap", 
+              map: "House0",
+              x: utils.withGrid(-6),
+              y: utils.withGrid(2),
+              direction: "up", 
+            }
+          ]
+        }
+      ]
+    } 
+  },
+}

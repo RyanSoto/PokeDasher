@@ -11,12 +11,13 @@ class Overworld {
       //Check for 0 health condition
       if (window.playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
 
-        this.startMap(window.OverworldMaps.Starville);
+        this.startMap(window.OverworldMaps.StarvilleRevive);
 
         this.map.startCutscene([
           { type: "death"},
           { type: "removeStoryFlag", flag: "DEATH" },
-          { type: "textMessage", text:"You paid the price for not following proto buddy."} , 
+          { type: "textMessage", text:"You have been discharged been from the hospital. Paid $50 for treatment."} , 
+          // { type: "textMessage", text:"$50 was removed from your bank."} , 
         ])
       }
 
