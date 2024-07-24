@@ -182,7 +182,7 @@ class Hero extends GameObject {
       if (window.playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
 
         state.map.startCutscene([
-          { type: "shoutMessage", text:"You sustained too much damage!"} , 
+          { type: "shoutMessage", text:"Too much damage!"} , 
           { type: "shoutMessage", text:"You're done!"} , 
           { type: "addStoryFlag", flag: "DEATH" },
         ])
