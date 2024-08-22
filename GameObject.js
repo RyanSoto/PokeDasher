@@ -23,7 +23,7 @@ class GameObject {
   }
 
   mount(map) {
-    console.log("mounting!")
+    // console.log("mounting!")
     this.isMounted = true;
 
 

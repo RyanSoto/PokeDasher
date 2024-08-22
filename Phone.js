@@ -1,5 +1,5 @@
 class Phone {
-    constructor({dispatcher, restaurant, onComplete}) {
+    constructor({ onComplete }) {
 
         // this.dispatcher = dispatcher;
         // this.restaurant = restaurant;
@@ -59,5 +59,9 @@ class Phone {
         this.keyQ = new KeyPressListener("KeyQ", () =>{
             this.close();
         })
+        this.element.querySelector(".home_btn").addEventListener("click", () => {
+            //close the text message
+            this.close();
+        });
     }
 }

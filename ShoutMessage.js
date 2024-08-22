@@ -22,9 +22,18 @@ class ShoutMessage {
         })
 
         this.element.querySelector("button").addEventListener("click", () => {
-            //clost the text message
+            //close the text message
             this.done();
         });
+        
+        this.element.querySelector(".ShoutMessage_p").addEventListener("click", () => {
+            //close the text message
+            this.done();
+        });
+        // this.actionListener = new KeyPressListener("click", () => {
+            
+        //     this.done();
+        // })
         this.actionListener = new KeyPressListener("Enter", () => {
             
             this.done();

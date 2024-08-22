@@ -166,6 +166,11 @@ class Overworld {
 
     // {type: "offer"}
 
+    {type: "shoutMessage", text: "Welcome to my demo!"},
+    { type: "textMessage", text:"Press F or Enter to interact with things."},
+    // { type: "textMessage", text:"Welcome to Ryan Soto's interactive resume! Click next or hit enter to proceed."},
+
+
     // // Intro 1.0
 
     // { who: "npc2", type: "walk",  direction: "down" },
