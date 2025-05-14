@@ -15,6 +15,31 @@ class Hero extends GameObject {
     }
     this.standBehaviorTimeout;
 
+    new KeyPressListener("KeyB", () => {
+      if (this.movingProgressRemaining === 0) {
+        if (this.isBiking) {
+          console.log("Bike Off");
+          this.isBiking = false;
+          this.speed = 1;
+          this.directionUpdate = {
+            "up": ["y", -this.speed],
+            "down": ["y", this.speed],
+            "left": ["x", -this.speed],
+            "right": ["x", this.speed],
+          };
+        } else {
+          console.log("Bike On");
+          this.isBiking = true;
+          this.speed = 4;
+          this.directionUpdate = {
+            "up": ["y", -this.speed],
+            "down": ["y", this.speed],
+            "left": ["x", -this.speed],
+            "right": ["x", this.speed],
+          };
+        }
+      }
+    });
 
 
   }
@@ -38,10 +63,7 @@ class Hero extends GameObject {
   }
 
   startBehavior(state, behavior) {
-    // this.isBiking = true;
-    this.toggleBikeOn()
-    this.toggleBikeOff()
-    // this.toggleBike()
+
     if (!this.isMounted) {
       return;
     }
@@ -63,9 +85,7 @@ class Hero extends GameObject {
       }
       //Stop here if space is not free
       if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
-
-          console.log("xlear")
-        
+       
           behavior.retry && setTimeout(() => {
             this.startBehavior(state, behavior)
           }, 10);
@@ -111,7 +131,7 @@ class Hero extends GameObject {
       if (this.isBiking === true) {
         this.movingProgressRemaining = 4; //speed 2 : 4 speed 4 : 4
       } else {
-      this.movingProgressRemaining = 16;}
+      this.movingProgressRemaining = 8;}
       
       
       // window.playerState.players.p1.enr -= 1;
@@ -202,42 +222,6 @@ class Hero extends GameObject {
         whoId: this.id
       })
     }
-}
-
-
-  toggleBikeOn() { 
-    new KeyPressListener("KeyB", () => {
-      if (this.movingProgressRemaining === 0 && this.isBiking === false) {
-        console.log("Bike On")
-        // console.trace(this.toggleBikeOff)
-        this.isBiking = true;
-        this.speed = 4;
-        this.directionUpdate = {
-          "up": ["y", -this.speed],
-          "down": ["y", this.speed],
-          "left": ["x", -this.speed],
-          "right": ["x", this.speed],
-        }}
-      }
-      )
-  } 
-
-
-  toggleBikeOff() { 
-    new KeyPressListener("KeyN", () => {
-      if (this.movingProgressRemaining === 0 && this.isBiking === true) {
-      console.log("Bike Off")
-      // console.trace(this.toggleBikeOff)
-      this.isBiking = false;
-      this.speed = 1;
-      this.directionUpdate = {
-        "up": ["y", -this.speed],
-        "down": ["y", this.speed],
-        "left": ["x", -this.speed],
-        "right": ["x", this.speed],
-      }
-    }
-    })
   }
 
   updateSprite() {
@@ -257,6 +241,7 @@ class Hero extends GameObject {
       return;
     } 
   }
+  
   updateBump() {
 
     if (this.movingProgressRemaining > 0 && this.isBiking === true) {

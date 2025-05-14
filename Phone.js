@@ -23,13 +23,9 @@ class Phone {
 
             <div class="home_btn"></div>
             <div class="shine"></div>
-
-
         </div>
         </div>
         `)
-
-
     }
     
     close() {
@@ -51,16 +47,17 @@ class Phone {
         console.log(playerState.storyFlags);
         console.log(playerState.players.p1.orders);
         container.appendChild(this.element);
-        
-        this.offer = new Offer({});
-        this.offer.init(container);
+        this.offer = new Offer({container})
+        this.offer.init();
         
         utils.wait(200);
         this.keyQ = new KeyPressListener("KeyQ", () =>{
             this.close();
         })
+        // this.keyQ = new KeyPressListener("Space", () =>{
+        //     this.close();
+        // })
         this.element.querySelector(".home_btn").addEventListener("click", () => {
-            //close the text message
             this.close();
         });
     }

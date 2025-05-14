@@ -100,6 +100,10 @@ class Overworld {
   //Is there a person here to talk to?
   this.map.checkForActionCutscene()
 })
+  new KeyPressListener("Space", () => {
+  //Is there a person here to talk to?
+  this.map.checkForActionCutscene()
+})
   new KeyPressListener("KeyQ", () => {
     //Pull up/Put away phone
     if (!this.map.isCutscenePlaying) {
@@ -166,9 +170,11 @@ class Overworld {
 
     // {type: "offer"}
 
-    {type: "shoutMessage", text: "Welcome to my demo!"},
-    { type: "textMessage", text:"Press F or Enter to interact with things."},
-    // { type: "textMessage", text:"Welcome to Ryan Soto's interactive resume! Click next or hit enter to proceed."},
+
+    // Welcome to my demo!
+    // {type: "shoutMessage", text: "Welcome to my demo!"},
+    // { type: "textMessage", text:"Press F or Enter to interact with things."},
+    // // { type: "textMessage", text:"Welcome to Ryan Soto's interactive resume! Click next or hit enter to proceed."},
 
 
     // // Intro 1.0

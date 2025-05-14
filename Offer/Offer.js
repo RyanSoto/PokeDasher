@@ -1,7 +1,10 @@
 class Offer {
-    constructor(config, onComplete ) {
+    constructor(config) {
         this.map = new OverworldMap(config);
-        this.onComplete = onComplete;
+        // this.map = null;
+        // this.map = config.OverworldMap;
+
+        // this.onComplete = onComplete;
         this.tipCal = null
         this.basePay = 5;
         this.distPay = 1 * 1;
@@ -13,25 +16,25 @@ class Offer {
 
     }
 
-    // get base(){
+    get base(){
 
-    // }
+    }
 
-    // get dist(){
+    get dist(){
         
-    // }
+    }
 
     calcTip(resTip){
         this.tipCal = resTip * this.tip        
     }
 
-    // calcTip(cusTip){
-    //     this.tipCal = cusTip * this.tip        
-    // }
+    calcTip(cusTip){
+        this.tipCal = cusTip * this.tip        
+    }
 
-    // get xp(){
+    get xp(){
         
-    // }
+    }
 
     
     // generate offer random dispatcher + random restaurant + random customer
@@ -64,12 +67,13 @@ class Offer {
         this.displayPay = formatter.format(this.pay)
         
     }
+
     genCustomer() {
 
-        var formatter = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
+        // var formatter = new Intl.NumberFormat('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD',
+        //   });
 
 
 
@@ -89,6 +93,8 @@ class Offer {
     }
 
     getOptions(pageKey) {
+        // this.map = window.OverworldMap;
+        // this.map.overworld = this;
 
         if (pageKey === "root") {
             return [
@@ -124,16 +130,16 @@ class Offer {
         }
         return [];
     }
+
     createElement() {
         this.element = document.createElement("div");
         this.element.classList.add("Offer");
         this.element.innerHTML = (`
         <div class="iphone_screen1">
-        
         <div class="Logo">
-            <img src="${'./images/characters/Grubhub-Logo.png'}" alt="Logo" />
-            </div>
-            </div>
+        <img src="${'./images/characters/Grubhub-Logo.png'}" alt="Logo" />
+        </div>
+        </div>
         <p class="resName">${this.resName}</p>
         <p class="address">Delivery to : ${this.address}</p>
         <p class="pay">${this.displayPay}</p>
@@ -145,11 +151,10 @@ class Offer {
         this.element.classList.add("Offer");
         this.element.innerHTML = (`
         <div class="iphone_screen1">
-        
         <div class="Logo">
-            <img src="${'./images/characters/Grubhub-Logo.png'}" alt="Logo" />
-            </div>
-            </div>
+        <img src="${'./images/characters/Grubhub-Logo.png'}" alt="Logo" />
+        </div>
+        </div>
         <p class="resName">${playerState.players.p1.orders[0]}</p>
         <p class="address">Delivery to : ${playerState.players.p1.orders[1]}</p>
         <p class="pay">${playerState.players.p1.orders[2]}</p>
@@ -158,9 +163,20 @@ class Offer {
         // <p class="pay">${this.displayPay}</p>
     }
 
+    afterAcceptMessage() {
+        this.descriptionElement = document.createElement("div");
+        this.descriptionElement.classList.add("AfterOffer");
+        this.descriptionElement.innerHTML = (`
+            <div class="iphone_screen1">
+            </div>
+            <p>Press Q to put away your phone.</p>`);
+        this.descriptionElementText = this.descriptionElement.querySelector("p");
+    }
+
     close() {
         this.keyQ?.unbind();
-        this.offerMenu ? this.offerMenu.end(): null;
+        // this.offerMenu ? this.offerMenu.end(): null;
+        // this.offerMenu.end()
         this.element.remove();
         // this.onComplete();
     }
@@ -180,22 +196,20 @@ class Offer {
         })
         this.offerMenu.init(this.element);
         this.offerMenu.setOptions(this.getOptions("root"));
-        document.querySelector(".iphone_screen").appendChild(this.element);
-
-        this.keyQ = new KeyPressListener("KeyQ", () =>{
-            this.close();
-        })
-        
-    }
-
-    if (playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] || playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
-        this.createElementMemory();
+        // this.afterAcceptMessage(this.element);
         document.querySelector(".iphone_screen").appendChild(this.element);
         this.keyQ = new KeyPressListener("KeyQ", () =>{
             this.close();
-        })
-    }
+            })
+        }
 
+        if (playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] || playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
+            this.createElementMemory();
+            document.querySelector(".iphone_screen").appendChild(this.element);
+            this.keyQ = new KeyPressListener("KeyQ", () =>{
+                this.close();
+            })
+        }
 
     }
 }

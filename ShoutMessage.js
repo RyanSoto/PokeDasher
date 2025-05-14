@@ -34,12 +34,13 @@ class ShoutMessage {
             
         //     this.done();
         // })
-        this.actionListener = new KeyPressListener("Enter", () => {
-            
+        this.actionListener = new KeyPressListener("Enter", () => {        
             this.done();
         })
-        this.actionListener = new KeyPressListener("KeyF", () => {
-            
+        this.actionListener = new KeyPressListener("KeyF", () => {   
+            this.done();
+        })        
+        this.actionListener = new KeyPressListener("Space", () => {   
             this.done();
         })
     }

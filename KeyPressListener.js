@@ -16,21 +16,10 @@ class KeyPressListener {
         };
 
         document.addEventListener("keydown", this.keydownFunction);
-        // document.addEventListener("touchstart",event => {
-        //     ;[...event.changedTouches].forEach(touch => {
-        //         const dot = document.createElement("div");
-        //         dot.classList.add("dot");
-        //         dot.style.top = touch.clientY + "px";
-        //         dot.style.left = touch.clientX + "px";
-        //         dot.id = touch.identifier;
-        //         document.body.appendChild(dot);
-        //         this.keydownFunction
-        //     })
-        // } );
         document.addEventListener("touchstart", this.keydownFunction);
-        document.addEventListener("touchmove", this.keydownFunction);
         document.addEventListener("keyup", this.keyupFunction);
         document.addEventListener("touchend", this.keydownFunction);
+        // document.addEventListener("touchmove", this.keydownFunction);
     }
 
     unbind() {

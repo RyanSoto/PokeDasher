@@ -32,7 +32,7 @@ class OfferMenu {
         })
         button.addEventListener("focus", () => {
           this.prevFocus = button;
-          this.descriptionElementText.innerText = button.dataset.description;
+          // this.descriptionElementText.innerText = button.dataset.description;
         })
       })
   
@@ -48,20 +48,21 @@ class OfferMenu {
     createElement() {
       this.element = document.createElement("div");
       this.element.classList.add("OfferMenu");
-  
-      //Description box element
-      this.descriptionElement = document.createElement("div");
-      this.descriptionElement.classList.add("DescriptionBox");
-      this.descriptionElement.innerHTML = (`<p>I will provide information!</p>`);
-      this.descriptionElementText = this.descriptionElement.querySelector("p");
+
     }
   
     end() {
   
       //Remove menu element and description element
-      this.element.remove();
-      this.descriptionElement.remove();
-  
+      // this.element.remove();
+      // this.descriptionElement.remove();
+    
+      //Description box element
+      this.descriptionElement = document.createElement("div");
+      this.descriptionElement.classList.add("DescriptionBox");
+      this.descriptionElement.innerHTML = (`<p>Press Q to put away your phone.</p>`);
+      this.descriptionElementText = this.descriptionElement.querySelector("p");
+
       //Clean up bindings
       this.up.unbind();
       this.down.unbind();
@@ -69,7 +70,7 @@ class OfferMenu {
   
     init(container) {
       this.createElement();
-      (this.descriptionContainer || container).appendChild(this.descriptionElement);
+      (this.descriptionContainer || container);
       container.appendChild(this.element);
 
       this.up = new KeyPressListener("ArrowUp", () => {

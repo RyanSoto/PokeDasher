@@ -33,6 +33,9 @@ class TextMessage {
             
             this.done();
         })
+        this.actionListener = new KeyPressListener("Space", () => {   
+            this.done();
+        })
     }
 
     done() {
