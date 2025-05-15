@@ -44,7 +44,6 @@ class Phone {
         container.appendChild(this.element);
         this.offer = new Offer(this.map )
         this.offer.init(container);
-        console.log(this.offer.offerMenu);
         utils.wait(200);
 
         // Put away the phone
