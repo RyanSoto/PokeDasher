@@ -95,8 +95,8 @@ class OverworldMap {
 
     for (let i=0; i<events.length; i++) {
       const eventHandler = new OverworldEvent({
-        event: events[i],
         map: this,
+        event: events[i],
       })
       await eventHandler.init();
     }

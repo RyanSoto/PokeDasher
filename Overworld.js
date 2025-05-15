@@ -16,7 +16,7 @@ class Overworld {
         this.map.startCutscene([
           { type: "death"},
           { type: "removeStoryFlag", flag: "DEATH" },
-          { type: "textMessage", text:"You have been discharged been from the hospital. Paid $50 for treatment."} , 
+          { type: "textMessage", text:"You have been discharged from the hospital. Paid $50 for treatment."} , 
           // { type: "textMessage", text:"$50 was removed from your bank."} , 
         ])
       }

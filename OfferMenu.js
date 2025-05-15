@@ -40,8 +40,6 @@ class OfferMenu {
         this.element.querySelector("button[data-button]:not([disabled])").focus();
       }, 10)
   
-      
-  
   
     }
   

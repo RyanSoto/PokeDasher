@@ -1,8 +1,9 @@
 class Phone {
-    constructor({ onComplete }) {
+    constructor({ map, onComplete }) {
 
         // this.dispatcher = dispatcher;
         // this.restaurant = restaurant;
+        this.map = map;
         this.onComplete = onComplete;
 
     }
@@ -29,6 +30,7 @@ class Phone {
     }
     
     close() {
+        console.log("Phone closed")
         this.keyQ?.unbind();
         // this.keyboardMenu.end();
         this.element.remove();
@@ -37,27 +39,29 @@ class Phone {
 
     async init(container) {
         this.createElement();
-
-
-        // this.keyboardMenu = new KeyboardMenu({
-        //     descriptionContainer: container
-        // })
-        // this.keyboardMenu.init(this.element);
-        // this.keyboardMenu.setOptions(this.getOptions("root"));
         console.log(playerState.storyFlags);
         console.log(playerState.players.p1.orders);
         container.appendChild(this.element);
-        this.offer = new Offer({container})
-        this.offer.init();
-        
+        this.offer = new Offer(this.map )
+        this.offer.init(container);
+        console.log(this.offer.offerMenu);
         utils.wait(200);
+
+        // Put away the phone
         this.keyQ = new KeyPressListener("KeyQ", () =>{
+            console.log("KeyQ close")
             this.close();
         })
-        // this.keyQ = new KeyPressListener("Space", () =>{
-        //     this.close();
+        // if (!this.offer.offerMenu) {
+        //     this.keyQ = new KeyPressListener("Space", () =>{
+        //         console.log("Space close")
+        //         console.log(this.offer.offerMenu)
+        //         // this.close();
         // })
+        // }
+
         this.element.querySelector(".home_btn").addEventListener("click", () => {
+            console.log("Home button close")
             this.close();
         });
     }

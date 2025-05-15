@@ -1,6 +1,6 @@
 class Offer {
-    constructor(config) {
-        this.map = new OverworldMap(config);
+    constructor(map) {
+        this.map = map;
         // this.map = null;
         // this.map = config.OverworldMap;
 
@@ -174,6 +174,7 @@ class Offer {
     }
 
     close() {
+        console.log("Offer closed");
         this.keyQ?.unbind();
         // this.offerMenu ? this.offerMenu.end(): null;
         // this.offerMenu.end()

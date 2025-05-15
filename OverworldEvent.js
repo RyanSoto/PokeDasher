@@ -121,13 +121,16 @@ class OverworldEvent {
   // }
 
   phone(resolve) {
-
+    if (this.map.isPaused) {
+      resolve();
+      return;
+    } 
     console.log("Phone up")
     this.map.isPaused = true
     const phone = new Phone({
       // dispatcher: Dispatcher[this.event.dispatcherId],
       // restaurant: Restaurant[this.event.restaurantId],
-      
+      map: this.map,
       onComplete: () => {
         resolve();
         this.map.isPaused = false;
