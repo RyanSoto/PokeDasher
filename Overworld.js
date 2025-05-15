@@ -172,9 +172,11 @@ class Overworld {
 
 
     // Welcome to my demo!
-    // {type: "shoutMessage", text: "Welcome to my demo!"},
-    // { type: "textMessage", text:"Press F or Enter to interact with things."},
-    // // { type: "textMessage", text:"Welcome to Ryan Soto's interactive resume! Click next or hit enter to proceed."},
+    {type: "shoutMessage", text: "Welcome to my demo!"},
+    { type: "textMessage", text: "Press F or Enter to interact."},
+    { type: "textMessage", text: "Press Q to pick up or put down your phone."},
+    { type: "textMessage", text: "Press B to get on or off your bike."},
+    // { type: "textMessage", text:"Welcome to Ryan Soto's interactive resume! Click next or hit enter to proceed."},
 
 
     // // Intro 1.0
