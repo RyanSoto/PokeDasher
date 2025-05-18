@@ -8,6 +8,8 @@ Pokestyled delivery service game
 
 More direction for idiots
 
+Progression/Shop
+
 Mouse clicks for interactions
 
 Able to kill npc's
@@ -30,6 +32,7 @@ NPC Rivals. Taking offers
 
 Penalty for wrong delivery destination.
 
+Night/Day cycle
 ~health~
 stamina
 experience

@@ -1,19 +1,13 @@
 class Offer {
     constructor(map) {
         this.map = map;
-        // this.map = null;
-        // this.map = config.OverworldMap;
-
-        // this.onComplete = onComplete;
         this.tipCal = null
         this.basePay = 5;
         this.distPay = 1 * 1;
-        this.randTip = 
+        // this.randTip = 0;
         this.tip = 5.50;
         this.pay = 0
-        
-        // this.pickUp = null
-
+    
     }
 
     get base(){
@@ -70,13 +64,6 @@ class Offer {
 
     genCustomer() {
 
-        // var formatter = new Intl.NumberFormat('en-US', {
-        //     style: 'currency',
-        //     currency: 'USD',
-        //   });
-
-
-
         // generate random number Customer key
         let customerKeyGen = Math.floor(Math.random() * 20);
         let cusKey = CustomerChance[customerKeyGen];
@@ -123,6 +110,10 @@ class Offer {
                 label: "Deny",
                 description: "Reject this offer",
                 handler: () => {
+                    this.map.startCutscene([
+                    { type: "textMessage", text: "Order Denied" }
+
+                    ]);
                     this.close();
                 }
             }

@@ -16,9 +16,9 @@ class Hero extends GameObject {
     this.standBehaviorTimeout;
 
     new KeyPressListener("KeyB", () => {
-      if (this.movingProgressRemaining === 0) {
+      if (this.movingProgressRemaining === 0 && playerState.storyFlags["BIKE"]) {
         if (this.isBiking) {
-          console.log("Bike Off");
+          console.log("Bike Off");  
           this.isBiking = false;
           this.speed = 1;
           this.directionUpdate = {
@@ -40,7 +40,7 @@ class Hero extends GameObject {
         }
       }
     });
-
+ 
 
   }
 
@@ -214,6 +214,9 @@ class Hero extends GameObject {
     const [property, change] = this.directionUpdate[this.direction];
     this[property] += change;
     this.movingProgressRemaining -= 1;
+
+    // Check current position
+    console.log((this.x / 16), (this.y / 16))
 
     if (this.movingProgressRemaining === 0) {
       //We finished the walk!

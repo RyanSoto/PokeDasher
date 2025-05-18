@@ -28,8 +28,8 @@ window.Restaurant = {
         Tip:.8,
         pickUpVal: "PICKUP_0",
         xp: 1.0,
-        // src: "./images/characters/pizzas/s001.png",
-        // icon: "./images/icons/spicy.png",
+        // src: "./images/restaurants/DairyKing.png",
+        // icon: "./images/icons/Milkshake.png",
         },
     "s002": {
         resName: "WacArnolD's",

@@ -6,7 +6,7 @@ class PlayerState {
             playerId: "You",
             enr: 100,
             maxEnr: 100,
-            money: 0,
+            money: 10,
             xp: 100,
             maxXp: 100,
             level: 1,
@@ -20,8 +20,7 @@ class PlayerState {
         { actionId: "item_recoverEnr", instanceId: "item2" },
         { actionId: "item_recoverEnr", instanceId: "item3" },
       ]
-      this.storyFlags = {
-      };
+      this.storyFlags = { "BIKE" : true };
     }
   }
   window.playerState = new PlayerState();

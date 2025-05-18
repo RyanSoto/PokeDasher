@@ -11,9 +11,12 @@ class Overworld {
       //Check for 0 health condition
       if (window.playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
 
-        this.startMap(window.OverworldMaps.StarvilleRevive);
-
         this.map.startCutscene([
+          { type: "changeMap", map: "Starville", 
+              x: utils.withGrid(73),
+              y: utils.withGrid(43),
+              direction: "up"
+            },
           { type: "death"},
           { type: "removeStoryFlag", flag: "DEATH" },
           { type: "textMessage", text:"You have been discharged from the hospital. Paid $50 for treatment."} , 
@@ -22,7 +25,7 @@ class Overworld {
       }
 
       //Check for end game condition
-      if (window.playerState.players.p1.money >= 50 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
+      if (window.playerState.players.p1.money >= 1000 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
 
         this.map.startCutscene([
           { type: "shoutMessage", text:"Congrats on nothing!"} , 
@@ -136,6 +139,7 @@ class Overworld {
 
   }
  }
+
  endGame() {
   console.log("Game Over")
   this.map.isPaused = true
@@ -144,8 +148,6 @@ class Overworld {
     { type: "shoutMessage", text:"Congrats on nothing!"} , 
     { type: "shoutMessage", text:"The End?"} , 
   ])
-
-
 
   }
 
@@ -166,16 +168,13 @@ class Overworld {
 
   this.map.startCutscene([
 
-    //{type: "battle" }
-
-    // {type: "offer"}
-
-
     // Welcome to my demo!
-    {type: "shoutMessage", text: "Welcome to my demo!"},
-    { type: "textMessage", text: "Press F or Enter to interact."},
-    { type: "textMessage", text: "Press Q to pick up or put down your phone."},
-    { type: "textMessage", text: "Press B to get on or off your bike."},
+    // {type: "shoutMessage", text: "Welcome to my demo!"},
+    // { type: "textMessage", text: "Press F or Enter to interact."},
+    // { type: "textMessage", text: "Press Q to pick up or put down your phone."},
+    // { type: "textMessage", text: "Press B to get on or off your bike."},
+
+
     // { type: "textMessage", text:"Welcome to Ryan Soto's interactive resume! Click next or hit enter to proceed."},
 
 

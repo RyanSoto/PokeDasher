@@ -9,6 +9,7 @@ class OfferMenu {
   
     setOptions(options) {
       this.options = options;
+      console.log("options ", this.options);
       this.element.innerHTML = this.options.map((option, index) => {
         const disabledAttr = option.disabled ? "disabled" : "";
         return (`
