@@ -178,8 +178,9 @@ window.OverworldMaps = {
         useShadow: true,
         x: utils.withGrid(10),
         y: utils.withGrid(21),
-        src: "./images/characters/people/npc2.png",
+        src: "./images/characters/people/npc3.png",
         behaviorLoop: [
+          {type: "drink", direction: "down", time: 1500},
           {type: "stand", direction: "up", time: 800},
           {type: "walk", direction: "up"},
           {type: "stand", direction: "up", time: 1600},
@@ -451,7 +452,21 @@ window.OverworldMaps = {
             }
           ]
         }
-      ]
+      ],
+            [utils.asGridCoord(35,20)]: [
+        {
+          events: [
+
+            { type: "changeMap", 
+              map: "Store0",
+              x: utils.withGrid(4),
+              y: utils.withGrid(15),
+              direction: "up", 
+            }
+          ]
+        }
+      ],
+
     } 
   },
   House0: {

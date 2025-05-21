@@ -40,6 +40,32 @@ class Hero extends GameObject {
         }
       }
     });
+
+        new KeyPressListener("KeyY", () => {
+      if (this.movingProgressRemaining === 0) {
+        if (this.isBiking) {
+          console.log("Bike Off");  
+          this.isBiking = false;
+          this.speed = 1;
+          this.directionUpdate = {
+            "up": ["y", -this.speed],
+            "down": ["y", this.speed],
+            "left": ["x", -this.speed],
+            "right": ["x", this.speed],
+          };
+        } else {
+          console.log("Bike On");
+          this.isBiking = true;
+          this.speed = 4;
+          this.directionUpdate = {
+            "up": ["y", -this.speed],
+            "down": ["y", this.speed],
+            "left": ["x", -this.speed],
+            "right": ["x", this.speed],
+          };
+        }
+      }
+    });
  
 
   }

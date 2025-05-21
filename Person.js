@@ -3,6 +3,7 @@ class Person extends GameObject {
     super(config);
     this.movingProgressRemaining = 0;
     this.isStanding = false;
+    this.isDrinking = false;
     this.intentPosition = null; // [x,y]
     this.speed = 1
     this.isPlayerControlled = config.isPlayerControlled || false;
@@ -69,7 +70,7 @@ class Person extends GameObject {
         intentPosition.y,
       ]
 
-      this.updateSprite(state);
+      this.updateSprite();
     }
 
     if (behavior.type === "stand") {
@@ -85,6 +86,22 @@ class Person extends GameObject {
         })
         this.isStanding = false;
       }, behavior.time)
+    }
+
+    if (behavior.type === "drink") {
+      this.isDrinking = true;
+      
+      if (this.standBehaviorTimeout) {
+        clearTimeout(this.standBehaviorTimeout);
+        // console.log("xlear")
+      }
+      this.standBehaviorTimeout = setTimeout(() => {
+        utils.emitEvent("PersonDrinkComplete", {
+          whoId: this.id
+        })
+        this.isDrinking = false;
+      }, behavior.time)
+      this.updateSprite(1);
     }
 
   }
@@ -104,11 +121,18 @@ class Person extends GameObject {
     }
 
 
-  updateSprite() {
+  updateSprite(x) {
+    // if we drink
+    if (this.isDrinking) {
+      console.log("drinking")
+      this.sprite.setAnimation("drink-"+this.direction);
+      return;
+    }
     if (this.movingProgressRemaining > 0) {
       this.sprite.setAnimation("walk-"+this.direction);
       return;
     }
-    this.sprite.setAnimation("idle-"+this.direction);    
+    if (this.isStanding){
+    {this.sprite.setAnimation("idle-"+this.direction); }}
   }
 }

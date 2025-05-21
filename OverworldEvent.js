@@ -22,6 +22,27 @@ class OverworldEvent {
       }
     }
     document.addEventListener("PersonStandComplete", completeHandler)
+  }  
+  
+  drink(resolve) {
+    const who = this.map.gameObjects[ this.event.who ];
+    console.log("will drink")
+    who.startBehavior({
+      map: this.map
+    }, {
+      type: "drink",
+      direction: this.event.direction,
+      time: this.event.time
+    })
+    
+    //Set up a handler to complete when correct person is done walking, then resolve the event
+    const completeHandler = e => {
+      if (e.detail.whoId === this.event.who) {
+        document.removeEventListener("PersonDrinkComplete", completeHandler);
+        resolve();
+      }
+    }
+    document.addEventListener("PersonDrinkComplete", completeHandler)
   }
 
   walk(resolve) {
@@ -64,6 +85,7 @@ class OverworldEvent {
       obj.direction = utils.oppositeDirection(this.map.gameObjects["hero"].direction);
     }
     const message = new ChoiceMessage({
+      map: this.map,
       text: this.event.text,
       onComplete: () => resolve()
     })

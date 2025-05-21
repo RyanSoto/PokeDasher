@@ -1,5 +1,6 @@
 class ChoiceMessage {
-    constructor({ text, onComplete}) {
+    constructor({map, text, onComplete, config={}}) {
+        this.map = map;
         this.options = []; //set by updater method
         this.up = null;
         this.down = null;
@@ -8,6 +9,62 @@ class ChoiceMessage {
         this.text = text;
         this.onComplete = onComplete;
         this.element = null;
+
+        root = [
+            {
+                label: "Purchase bike",
+                description: "Purchase a bike for $100",
+                id: "purchaseBike",
+                handler: () => {
+                if (playerState.storyFlags["BIKE"]){
+                    this.map.startCutscene([
+                            { type: "textMessage", text: "You already have a bike" },
+                            // { who: "hero", type: "walk", direction: "down" }
+                    ]);
+                    setTimeout(() => {
+                      document.getElementById("finishShopping").focus();
+                    }, 10)
+                    
+                    // this.close();
+                }else if (playerState.players.p1.money < 10) {
+                    this.map.startCutscene([
+                            { type: "textMessage", text: "You don't have enough money" },
+                            // { who: "hero", type: "walk", direction: "down" },
+                    ]);
+                    setTimeout(() => {
+                      document.getElementById("finishShopping").focus();
+                    }, 10)
+                    // this.close();
+                  } else {
+                    this.map.startCutscene([
+                            { type: "addStoryFlag", flag: "BIKE"},
+                            // { who: "hero", type: "walk", direction: "down" },
+                            { type: "textMessage", text: "You purchased the bike" }
+
+                    ]);
+                    console.log("Purchase Bike");
+                    playerState.players.p1.money -= 10;
+                    utils.emitEvent("PlayerStateUpdated"); 
+                    setTimeout(() => {
+                      document.getElementById("finishShopping").focus();
+                    }, 10)
+                    // this.close();
+                  }
+                }
+             },
+            {
+                label: "Finish Shopping",
+                description: "Finish Shopping",
+                id: "finishShopping",
+                handler: () => {
+                    this.map.startCutscene([
+                    { type: "textMessage", text: "Thanks for coming in! Come back and see us real soon." },
+                    { who: "hero", type: "walk", direction: "down" }
+                    ]);
+                    this.close();
+                }
+            }
+            ]
     }
 
     getOptions(pageKey) {
@@ -25,7 +82,7 @@ class ChoiceMessage {
         const disabledAttr = option.disabled ? "disabled" : "";
         return (`
           <div class="option">
-            <button ${disabledAttr} data-button="${index}" data-description="${option.description}">
+            <button ${disabledAttr} id="${option.id}" class="ShopMessage_button" data-button="${index}" data-description="${option.description}">
               ${option.label}
             </button>
           </div>
@@ -58,35 +115,8 @@ class ChoiceMessage {
     createElement() {
         //Create the element
         this.element = document.createElement("div");
-        this.element.classList.add("TextMessage");
+        this.element.classList.add("ShopMessage");
 
-        this.element.innerHTML = (`
-            <p class="TextMessage_p"></p>
-            <button class="ChoiceMessage_button_Yes">Yes</button>
-            <button class="ChoiceMessage_button_No">No</button>
-        `)
-
-        //init the typewriter effect
-        this.revealingText = new RevealingText({
-            element: this.element.querySelector(".TextMessage_p"),
-            text: this.text
-        })
-
-        this.element.querySelector("button").addEventListener("click", () => {
-            //clost the text message
-            this.done();
-        });
-        this.actionListener = new KeyPressListener("Enter", () => {
-            
-            this.done();
-        })
-        this.actionListener = new KeyPressListener("KeyF", () => {
-            
-            this.done();
-        })
-        this.actionListener = new KeyPressListener("Space", () => {   
-            this.done();
-        })
     }
 
     done() {
@@ -98,15 +128,20 @@ class ChoiceMessage {
         } else {
             this.revealingText.warpToDone();
         }
+      }
 
+
+    close() {
+        console.log("Shop closed");
+        this.element.remove();
     }
 
     init(container) {
 
 
-      setOptions(root);
       
       this.createElement();
+      this.setOptions(root);
       (this.descriptionContainer || container);
       container.appendChild(this.element);
 

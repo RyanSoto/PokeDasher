@@ -20,7 +20,7 @@ class PlayerState {
         { actionId: "item_recoverEnr", instanceId: "item2" },
         { actionId: "item_recoverEnr", instanceId: "item3" },
       ]
-      this.storyFlags = { "BIKE" : true };
+      this.storyFlags = { };
     }
   }
   window.playerState = new PlayerState();
