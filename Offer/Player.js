@@ -35,7 +35,7 @@ class Player {
           <p class="Player_name">${this.name}</p>
           <p class="Player_level"></p>
           <div class="Player_character_crop">
-
+          
           </div>
           <svg viewBox="0 0 26 3" class="Player_life-container">
             <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
@@ -47,16 +47,6 @@ class Player {
           </svg>
           <p class="Player_status">${this.money}</p>
         `);
-        //for each drinks add <img class="Drinks" src="../images/Objects/monster_hud.png"> to Player_character_crop
-        
-        // if (this.drinks && Number.isInteger(this.drinks) && this.drinks > 0) {
-        //   for (let i = 0; i < this.drinks; i++) {
-        //     const drinkImg = document.createElement("img");
-        //     drinkImg.classList.add("Drinks");
-        //     drinkImg.src = "../images/Objects/monster_hud.png";
-        //     this.hudElement.querySelector(".Player_character_crop").appendChild(drinkImg);
-        //   }
-        // }
 
         this.playerElement = document.createElement("img");
         this.playerElement.classList.add("player1");
@@ -99,15 +89,6 @@ class Player {
         //Update level on screen
         this.hudElement.querySelector(".Player_level").innerText = this.level;
     
-        //Update status
-        // const statusElement = this.hudElement.querySelector(".Player_status");
-        // if (this.status) {
-        //   statusElement.innerText = this.status.type;
-        //   statusElement.style.display = "block";
-        // } else {
-        //   statusElement.innerText = `${this.money}`;
-        //   statusElement.style.display = "block";
-        // }
       }
     
 

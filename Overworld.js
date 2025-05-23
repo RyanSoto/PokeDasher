@@ -71,7 +71,7 @@ class Overworld {
   startGameLoop() {
 
     let previousMs;
-    const step = 1/120;
+    const step = 1/60;
 
     const stepFN = (timestampMs) => {
       
