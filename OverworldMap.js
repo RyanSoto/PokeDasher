@@ -180,7 +180,7 @@ window.OverworldMaps = {
         y: utils.withGrid(21),
         src: "./images/characters/people/npc3.png",
         behaviorLoop: [
-          {type: "drink", direction: "down", time: 1500},
+          // {type: "drink", direction: "down", time: 1500},
           {type: "stand", direction: "up", time: 800},
           {type: "walk", direction: "up"},
           {type: "stand", direction: "up", time: 1600},
@@ -445,9 +445,9 @@ window.OverworldMaps = {
           events: [
 
             { type: "changeMap", 
-              map: "Store0",
-              x: utils.withGrid(4),
-              y: utils.withGrid(15),
+              map: "Shop0",
+              x: utils.withGrid(6),
+              y: utils.withGrid(8),
               direction: "up", 
             }
           ]
@@ -458,9 +458,9 @@ window.OverworldMaps = {
           events: [
 
             { type: "changeMap", 
-              map: "Store0",
-              x: utils.withGrid(4),
-              y: utils.withGrid(15),
+              map: "Shop0",
+              x: utils.withGrid(6),
+              y: utils.withGrid(8),
               direction: "up", 
             }
           ]
@@ -549,10 +549,10 @@ window.OverworldMaps = {
       // })
     },
 
-  Store0: {
-    id: "Store0",
-    lowerSrc: "./images/maps/Store0.png",
-    upperSrc: "",
+  Shop0: {
+    id: "Shop0",
+    lowerSrc: "./images/maps/Shop0_Lower.png",
+    upperSrc: "./images/maps/Shop0_Upper.png",
     configObjects: {
       hero: {
         type: "Hero",
@@ -560,8 +560,8 @@ window.OverworldMaps = {
       },
       npc1: {
         type: "Person",
-        x: utils.withGrid(4),
-        y: utils.withGrid(5),
+        x: utils.withGrid(6),
+        y: utils.withGrid(2),
         src: "./images/characters/people/npc1.png",
         talking: [
           {
@@ -594,14 +594,86 @@ window.OverworldMaps = {
           {type: "stand", direction: "right", time:1200},
         ]
       },
+      npc10: {
+        type: "Person",
+        x: utils.withGrid(8),
+        y: utils.withGrid(2),
+        src: "./images/characters/people/npc0.png",
+        talking: [
+          {
+            required: [ "GIT", "RENT_WARNING"  ],
+            events: [
+
+                { type: "removeStoryFlag", flag: "GIT"  },
+            ]   
+        },          {
+          required: [ "GREETING_DONE"  ],
+          events: [
+
+              { type: "textMessage", text: "Got everything you need?" , faceHero: "npc1"},
+              { type: "choiceMessage", text: "Please, have a look." , faceHero: "npc1"},
+
+          ]   
+        },
+          {
+            events: [
+              {type: "textMessage", text: "Please have a look around and let me know if you need anything.", faceHero: "npc1"},
+              {who: "npc1", type: "stand", direction: "left"},
+              { type: "addStoryFlag", flag: "GREETING_DONE"  },
+            ]
+          }
+        ],
+        behaviorLoop: [
+          {type: "stand", direction: "down", time: 1500},
+          {type: "stand", direction: "right", time: 4500},
+          {type: "stand", direction: "down", time:3000},
+          {type: "stand", direction: "right", time:1200},
+        ]
+      },
+      npc11: {
+        type: "Person",
+        x: utils.withGrid(6),
+        y: utils.withGrid(3),
+        src: "./images/characters/people/npc0.png",
+        talking: [
+          {
+            required: [ "GIT", "RENT_WARNING"  ],
+            events: [
+
+                { type: "removeStoryFlag", flag: "GIT"  },
+            ]   
+        },          {
+          required: [ "GREETING_DONE"  ],
+          events: [
+
+              { type: "textMessage", text: "Got everything you need?" , faceHero: "npc1"},
+              { type: "choiceMessage", text: "Please, have a look." , faceHero: "npc1"},
+
+          ]   
+        },
+          {
+            events: [
+              {type: "textMessage", text: "Please have a look around and let me know if you need anything.", faceHero: "npc1"},
+              {who: "npc1", type: "stand", direction: "left"},
+              { type: "addStoryFlag", flag: "GREETING_DONE"  },
+            ]
+          }
+        ],
+        behaviorLoop: [
+          {type: "stand", direction: "down", time: 1500},
+          {type: "stand", direction: "right", time: 4500},
+          {type: "stand", direction: "down", time:3000},
+          {type: "stand", direction: "right", time:1200},
+        ]
+      },      
     },
 
-    // walls: 
-    // collisionCoords = utils.collisionDetection(Store0Collision),
+    walls: 
+    collisionCoords = utils.collisionDetection(Shop0Collision),
     
     cutsceneSpaces: {
 
-      [utils.asGridCoord(4,16)]: [
+      [utils.asGridCoord(6,9)]: [
         {
           events: [
 

@@ -26,7 +26,6 @@ class OverworldEvent {
   
   drink(resolve) {
     const who = this.map.gameObjects[ this.event.who ];
-    console.log("will drink")
     who.startBehavior({
       map: this.map
     }, {

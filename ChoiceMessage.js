@@ -51,6 +51,37 @@ class ChoiceMessage {
                     // this.close();
                   }
                 }
+             },            
+             {
+                label: "Purchase energy drink",
+                description: "Purchase a drink for $5",
+                id: "purchaseBike",
+                handler: () => {
+                    if (playerState.players.p1.money < 5) {
+                    this.map.startCutscene([
+                            { type: "textMessage", text: "You don't have enough money" },
+                            // { who: "hero", type: "walk", direction: "down" },
+                    ]);
+                    setTimeout(() => {
+                      document.getElementById("finishShopping").focus();
+                    }, 10)
+                    // this.close();
+                  } else {
+                    this.map.startCutscene([
+                            // { type: "addStoryFlag", flag: "BIKE"},
+                            // { who: "hero", type: "walk", direction: "down" },
+                            { type: "textMessage", text: "You purchased the drink" },
+                    ]);
+                    console.log("Purchase drink");
+                    playerState.players.p1.drinks += 1;
+                    playerState.players.p1.money -= 5;
+                    utils.emitEvent("PlayerStateUpdated"); 
+                    setTimeout(() => {
+                      document.getElementById("finishShopping").focus();
+                    }, 10)
+                    // this.close();
+                  }
+                }
              },
             {
                 label: "Finish Shopping",
@@ -191,9 +222,29 @@ root = [
 
                     ]);
                     console.log("Purchase Bike");
-                    playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
-                    console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
-                    playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
+                    // playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
+                    // console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
+                    // playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
+                    utils.emitEvent("PlayerStateUpdated"); 
+                    
+                    this.close();
+                    
+                }
+             },
+             {
+                label: "Purchase Energy Drink",
+                description: "Purchase an Energy Drink for $5",
+                handler: () => {
+                    this.map.startCutscene([
+                            { type: "textMessage", text: "You purchase the drink" },
+
+                    ]);
+                    console.log("Purchased Drink");
+                    playerState.players.p1.drinks += 1;
+
+                    // playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
+                    // console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
+                    // playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
                     utils.emitEvent("PlayerStateUpdated"); 
                     
                     this.close();

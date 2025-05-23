@@ -121,10 +121,9 @@ class Person extends GameObject {
     }
 
 
-  updateSprite(x) {
+  updateSprite() {
     // if we drink
     if (this.isDrinking) {
-      console.log("drinking")
       this.sprite.setAnimation("drink-"+this.direction);
       return;
     }

@@ -36,7 +36,7 @@ class Sprite {
       "bidle-right": [ [0,6] ],
       "bidle-up"   : [ [0,7] ],
       "bidle-left" : [ [0,8] ],
-      "drink-down" : [ [1,4],[1,4],[1,4],[1,4],[2,4],[2,4],[2,4],[2,4],[2,4],[2,4],[3,4],[3,4],[3,4],[3,4], ],
+      "drink-down" : [ [1,4],[1,4],[1,4],[1,4],[2,4],[2,4],[2,4],[2,4],[2,4],[2,4],[3,4],[3,4],[3,4],[3,4],[0,0],[0,0] ],
 
     }
     this.currentAnimation = config.currentAnimation || "idle-down"; // config.currentAnimation || "idle-down";

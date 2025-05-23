@@ -37,7 +37,6 @@ class Player {
           <div class="Player_character_crop">
 
           </div>
-
           <svg viewBox="0 0 26 3" class="Player_life-container">
             <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
             <rect x=0 y=1 width="0%" height=2 fill="#3ef126" />
@@ -48,7 +47,17 @@ class Player {
           </svg>
           <p class="Player_status">${this.money}</p>
         `);
-    
+        //for each drinks add <img class="Drinks" src="../images/Objects/monster_hud.png"> to Player_character_crop
+        
+        // if (this.drinks && Number.isInteger(this.drinks) && this.drinks > 0) {
+        //   for (let i = 0; i < this.drinks; i++) {
+        //     const drinkImg = document.createElement("img");
+        //     drinkImg.classList.add("Drinks");
+        //     drinkImg.src = "../images/Objects/monster_hud.png";
+        //     this.hudElement.querySelector(".Player_character_crop").appendChild(drinkImg);
+        //   }
+        // }
+
         this.playerElement = document.createElement("img");
         this.playerElement.classList.add("player1");
         // this.playerElement.setAttribute("src", this.src );
@@ -72,11 +81,20 @@ class Player {
         //Update enr & XP percent fills
         this.enrFills.forEach(rect => rect.style.width = `${this.enrPercent}%`)
         this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
+        //Update drinks
+        this.hudElement.querySelector(".Player_character_crop").innerHTML = "";
+        for (let i = 0; i < this.drinks; i++) {
+            const drinkImg = document.createElement("img");
+            drinkImg.classList.add("Drinks");
+            drinkImg.src = "../images/Objects/monster_hud.png";
+            this.hudElement.querySelector(".Player_character_crop").appendChild(drinkImg);
+        }
 
         
         let formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
         this.money = formatter.format(this.money)
-        this.hudElement.querySelector(".Player_status").innerText = this.money
+        this.hudElement.querySelector(".Player_status").innerText = this.money        
+        this.hudElement.querySelector(".Drinks").innerText = this.drinks
     
         //Update level on screen
         this.hudElement.querySelector(".Player_level").innerText = this.level;

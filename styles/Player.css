@@ -139,3 +139,10 @@
     opacity:1;
     transform: translate3d(0,0,0) scale(2);
   }
+
+  .Drinks {
+    position: relative;
+    top: -3px; 
+    width: 20%;
+    height: 50%;
+  }

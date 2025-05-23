@@ -9,13 +9,13 @@ class Overworld {
 
  gameLoopStepWork(delta){
       //Check for 0 health condition
-      if (window.playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
+      if (playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
 
         this.map.startCutscene([
           { type: "changeMap", map: "Starville", 
               x: utils.withGrid(73),
               y: utils.withGrid(43),
-              direction: "up"
+              direction: "down"
             },
           { type: "death"},
           { type: "removeStoryFlag", flag: "DEATH" },
@@ -25,7 +25,7 @@ class Overworld {
       }
 
       //Check for end game condition
-      if (window.playerState.players.p1.money >= 1000 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
+      if (playerState.players.p1.money >= 1000 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
 
         this.map.startCutscene([
           { type: "shoutMessage", text:"Congrats on nothing!"} , 
@@ -34,7 +34,7 @@ class Overworld {
         ])
 
 
-        window.playerState.players.p1.money -= 10
+        // playerState.players.p1.money -= 10
         utils.emitEvent("PlayerStateUpdated"); 
 
       }
@@ -99,14 +99,17 @@ class Overworld {
     //Is there a person here to talk to?
     this.map.checkForActionCutscene()
  })
+
  new KeyPressListener("KeyF", () => {
   //Is there a person here to talk to?
   this.map.checkForActionCutscene()
 })
+
   new KeyPressListener("Space", () => {
   //Is there a person here to talk to?
   this.map.checkForActionCutscene()
 })
+
   new KeyPressListener("KeyQ", () => {
     //Pull up/Put away phone
     if (!this.map.isCutscenePlaying) {
@@ -115,6 +118,16 @@ class Overworld {
       ])
     }
   })
+
+  new KeyPressListener("KeyP", () => { 
+    if (!this.map.isCutscenePlaying && playerState.players.p1.drinks > 0) {
+      this.map.startCutscene([
+        {who:"hero", type: "drink", direction: "down", time: 1500}
+      ])
+    }
+  })
+  
+
   }
 
  bindHeroPositionCheck() {

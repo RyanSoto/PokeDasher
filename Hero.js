@@ -3,17 +3,19 @@ class Hero extends GameObject {
     super(config);
     this.movingProgressRemaining = 0;
     this.isStanding = false;
+    this.isDrinking = false;
     this.intentPosition = null; // [x,y]
     this.speed = 1
     this.isBiking = false;
     this.isPlayerControlled = config.isPlayerControlled || false;
+    this.standBehaviorTimeout;
     this.directionUpdate = {
       "up": ["y", -this.speed],
       "down": ["y", this.speed],
       "left": ["x", -this.speed],
       "right": ["x", this.speed],
     }
-    this.standBehaviorTimeout;
+    this.standDrinkTimeout;
 
     new KeyPressListener("KeyB", () => {
       if (this.movingProgressRemaining === 0 && playerState.storyFlags["BIKE"]) {
@@ -41,7 +43,7 @@ class Hero extends GameObject {
       }
     });
 
-        new KeyPressListener("KeyY", () => {
+    new KeyPressListener("KeyY", () => {
       if (this.movingProgressRemaining === 0) {
         if (this.isBiking) {
           console.log("Bike Off");  
@@ -66,7 +68,7 @@ class Hero extends GameObject {
         }
       }
     });
- 
+
 
   }
 
@@ -96,13 +98,11 @@ class Hero extends GameObject {
 
     //Set character direction to whatever behavior has
     this.direction = behavior.direction;
-
-
+   
     if (behavior.type === "walk") {
       //Bump if on bike and space is not free
       if (state.map.isSpaceTaken(this.x, this.y, this.direction) && this.isBiking === true) {
 
-        console.log("Bike Bump")
         this.bikeBump(state)
         behavior.retry && setTimeout(() => {
           this.startBehavior(state, behavior)
@@ -142,8 +142,6 @@ class Hero extends GameObject {
 
       //Stop here if space is not free
       if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
-
-          console.log("xlear")
         
           behavior.retry && setTimeout(() => {
             this.startBehavior(state, behavior)
@@ -176,7 +174,6 @@ class Hero extends GameObject {
       
       if (this.standBehaviorTimeout) {
         clearTimeout(this.standBehaviorTimeout);
-        console.log("xlear")
       }
       this.standBehaviorTimeout = setTimeout(() => {
         utils.emitEvent("PersonStandComplete", {
@@ -184,6 +181,21 @@ class Hero extends GameObject {
         })
         this.isStanding = false;
       }, behavior.time)
+    }
+
+    if (behavior.type === "drink") {
+      this.isDrinking = true;
+      this.drinkUp();
+      if (this.standDrinkTimeout) {
+        clearTimeout(this.standDrinkTimeout);
+      }
+      this.standDrinkTimeout = setTimeout(() => {
+        utils.emitEvent("PersonDrinkComplete", {
+          whoId: this.id
+        })
+        this.isDrinking = false;
+      }, behavior.time)
+      this.updateSprite();
     }
 
   }
@@ -217,15 +229,15 @@ class Hero extends GameObject {
           direction: "up"
         })
       }
-      window.playerState.players.p1.enr -= 10;
+      playerState.players.p1.enr -= 10;
       utils.emitEvent("PlayerStateUpdated"); 
-      if (window.playerState.players.p1.enr > 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
+      if (playerState.players.p1.enr > 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
       state.map.startCutscene([
         { type: "textMessage", text:"Oof!"} ,
       ])
     }
       this.updateSprite(state);
-      if (window.playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
+      if (playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
 
         state.map.startCutscene([
           { type: "shoutMessage", text:"Too much damage!"} , 
@@ -234,6 +246,16 @@ class Hero extends GameObject {
         ])
       }
     }
+  }
+
+  drinkUp() {
+    if (playerState.players.p1.enr >= 50) {
+      playerState.players.p1.enr = 100;
+    } else {
+    playerState.players.p1.enr += 50;}
+    playerState.players.p1.drinks -= 1;
+    utils.emitEvent("PlayerStateUpdated"); 
+    return
   }
 
   updatePosition() {
@@ -254,38 +276,26 @@ class Hero extends GameObject {
   }
 
   updateSprite() {
-
-    if (this.movingProgressRemaining > 0 && this.isBiking === true) {
+    // if we drink
+    if (this.isDrinking) {
+      this.sprite.setAnimation("drink-"+this.direction);
+      return;
+    }
+    // if we are biking
+    if (this.movingProgressRemaining > 0 && this.isBiking) {
     this.sprite.setAnimation("bike-"+this.direction);
     return;
-    } else if (this.isBiking == true) {
+    } else if (this.isBiking) {
        this.sprite.setAnimation("bidle-"+this.direction); 
     }   
-   if (this.movingProgressRemaining > 0 && (this.isBiking === false)) {
+   if (this.movingProgressRemaining > 0 && !this.isBiking) {
       this.sprite.setAnimation("walk-"+this.direction);
       return;
     }
-    else if (this.isBiking === false) {
+    else if (!this.isBiking && !this.isDrinking) {
       this.sprite.setAnimation("idle-"+this.direction);   
       return;
     } 
   }
-  
-  updateBump() {
 
-    if (this.movingProgressRemaining > 0 && this.isBiking === true) {
-    this.sprite.setAnimation("bike-"+this.direction);
-    return;
-    } else if (this.isBiking == true) {
-       this.sprite.setAnimation("bidle-"+this.direction); 
-    }   
-   if (this.movingProgressRemaining > 0 && (this.isBiking === false)) {
-      this.sprite.setAnimation("walk-"+this.direction);
-      return;
-    }
-    else if (this.isBiking === false) {
-      this.sprite.setAnimation("idle-"+this.direction);   
-      return;
-    } 
-  }
 }
