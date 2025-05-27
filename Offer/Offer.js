@@ -94,7 +94,6 @@ class Offer {
                             { type: "addStoryFlag", flag: this.pickUp},
                             { type: "addStoryFlag", flag: this.dropOff},
                             { type: "textMessage", text: "You accepted the order" }
-
                     ]);
                     console.log("Accepted Offer");
                     playerState.players.p1.orders = [this.resName , this.address, this.displayPay];

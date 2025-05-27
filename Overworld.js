@@ -47,7 +47,7 @@ class Overworld {
         if (!this._randomMessageStarted) return;
         if (this.offerExist) return; 
         if (!this.isActive) return;
-        const randomDelay = Math.floor(Math.random() * 5000) + 0; // 10 + 5 seconds
+        const randomDelay = Math.floor(Math.random() * 5000) + 2000; // 10 + 5 seconds
         console.log("Random message will trigger in", randomDelay, "ms");
         setTimeout(() => {
           if (!this.isActive) return;
@@ -61,7 +61,7 @@ class Overworld {
               }
             })
           
-            phoneNotification.init(document.querySelector(".game-container")).then(() => {
+        phoneNotification.init(document.querySelector(".game-container")).then(() => {
         this.isActive = true; // Reactivate after cutscene ends
         this._randomMessageStarted = false
         this.triggerRandomMessage(); // Schedule next message
@@ -70,7 +70,7 @@ class Overworld {
       };
 
       // Start the random message loop if active
-      if (this.isActive && !this.offerExist && !this._randomMessageStarted) {
+      if (this.isActive && !this.offerExist && !this._randomMessageStarted && !playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] && !playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
         this._randomMessageStarted = true;
         this.triggerRandomMessage();
       }

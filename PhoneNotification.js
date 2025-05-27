@@ -50,10 +50,36 @@ class PhoneNotification {
         // })
         // }
 
+
         this.element.querySelector(".IphoneNotification_btn").addEventListener("click", () => {
             console.log("Iphone Notification close")
             // this.offerExist = false;
             this.close();
+            
+            if (!this.map.isCutscenePlaying) {
+                this.map.startCutscene([
+                    { type: "phone"}
+                ])
+            }
+            this.offer = new Offer(this.map)
+            this.offer.init(container);
+            utils.wait(200);
+            
         });
+
+        this.keyQ = new KeyPressListener("KeyQ", () =>{
+            console.log("Iphone Notification close")
+            // this.offerExist = false;
+            this.close();
+            
+            if (!this.map.isCutscenePlaying) {
+                this.map.startCutscene([
+                    { type: "phone"}
+                ])
+            }
+            this.offer = new Offer(this.map)
+            this.offer.init(container);
+            utils.wait(200);
+        })
     }
 }

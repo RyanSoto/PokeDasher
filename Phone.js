@@ -42,9 +42,11 @@ class Phone {
         console.log(playerState.storyFlags);
         console.log(playerState.players.p1.orders);
         container.appendChild(this.element);
-        this.offer = new Offer(this.map )
-        this.offer.init(container);
-        utils.wait(200);
+        if (playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] || playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
+            this.offer = new Offer(this.map)
+            this.offer.init(container);
+            utils.wait(200);
+        }
 
         // Put away the phone
         this.keyQ = new KeyPressListener("KeyQ", () =>{

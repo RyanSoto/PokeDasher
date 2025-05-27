@@ -22,9 +22,9 @@ Upstairs for house 1
 
 Test
 
-Create Timed Offer
+~Create Timed Offer~
 
-Shop to purchase things (power ups, cosmetics, research)
+~Shop to purchase things~ (power ups, cosmetics, research)
 
 NPC Rivals. Taking offers
 
@@ -33,7 +33,6 @@ Penalty for wrong delivery destination.
 inside customer house with special events
 
 Shop stuff:
-
 Dog treat for back yard/alley escapes
 Cosmetics
 Food for health
