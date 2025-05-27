@@ -30,14 +30,21 @@ NPC Rivals. Taking offers
 
 Penalty for wrong delivery destination.
 
+inside customer house with special events
+
 Shop stuff:
 
-Bike
 Dog treat for back yard/alley escapes
-Energy Drink
+Cosmetics
+Food for health
+speed boost
+more time
+
 
 Night/Day cycle
 
 stamina depletes through out the day, can be restored with item
 
 experience
+
+level editor

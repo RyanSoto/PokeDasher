@@ -5,12 +5,8 @@ top: 0;
 left: 10%;
 right: 0;
 bottom: 99%;
-
-/* transform: translate(-50%, -50%); */
 transform: scale(.4);
-
 display: block;
-
 }
 
 .iphone_outer{
@@ -97,3 +93,16 @@ background-color:gray;
 transform:rotate(-20deg) translateX(-30px) translateY(-20px);
 } */
 
+
+
+.iPhoneNotification{
+position: absolute;
+bottom: 0;
+/* left: 10%; */
+right: 0;
+/* bottom: 99%; */
+/* transform: scale(.4); */
+display: block;
+image-rendering: pixelated;
+
+}

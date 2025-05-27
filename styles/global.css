@@ -1,7 +1,6 @@
 :root {
   --border-color: #291D4D;
   --dialog-background: #FFF384;
-
   --menu-background: #fffbf8;
   --menu-border-color: #8d7b72;
   --menu-font-color: #3A160D;
@@ -22,18 +21,20 @@ body {
 .game-container {
   position: relative; 
   width: 352px;
-  height: 198px;
+  height: 198px; 
   margin: 0 auto;
   outline: 1px solid #fff;
-
   transform: scale(3) translateY(50%);
+  /* width: 100%; */
+  /* height: 100%; */
+  /* transform: scale(3); */
 }
 
 .game-container canvas {
   image-rendering: pixelated;
 }
 
-@media only screen and (max-height: 768px) {
+/* @media only screen and (max-height: 768px) {
   .game-container {
     position: relative; 
     width: 352px;
@@ -43,4 +44,4 @@ body {
   
     transform: scale(2) translateY(50%);
   }
-}
+} */

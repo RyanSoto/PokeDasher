@@ -5,6 +5,8 @@ class Overworld {
    this.ctx = this.canvas.getContext("2d");
    this.map = null;
    this.hero = null;
+   this.position = []
+
  }
 
  gameLoopStepWork(delta){
@@ -32,13 +34,51 @@ class Overworld {
           { type: "shoutMessage", text:"The End?"} , 
           { type: "addStoryFlag", flag: "END_GAME" },
         ])
-
-
         // playerState.players.p1.money -= 10
         utils.emitEvent("PlayerStateUpdated"); 
-
       }
 
+      // Function to trigger a random message if isActive is true
+      this.isActive = this.isActive ?? true; // initialize if undefined
+      this.offerExist = this.offerExist ?? false; // initialize if undefined
+
+      this.triggerRandomMessage = () => {
+        
+        if (!this._randomMessageStarted) return;
+        if (this.offerExist) return; 
+        if (!this.isActive) return;
+        const randomDelay = Math.floor(Math.random() * 5000) + 0; // 10 + 5 seconds
+        console.log("Random message will trigger in", randomDelay, "ms");
+        setTimeout(() => {
+          if (!this.isActive) return;
+          this.isActive = false; // Prevent further triggers during cutscene
+          this.offerExist = true; // Set offerExist to true to prevent further triggers
+            const phoneNotification = new PhoneNotification({
+              map: this.map,
+              // offerExist: this.offerExist,
+              onComplete: () => {
+                this.offerExist = false;
+              }
+            })
+          
+            phoneNotification.init(document.querySelector(".game-container")).then(() => {
+        this.isActive = true; // Reactivate after cutscene ends
+        this._randomMessageStarted = false
+        this.triggerRandomMessage(); // Schedule next message
+          });
+        }, randomDelay);
+      };
+
+      // Start the random message loop if active
+      if (this.isActive && !this.offerExist && !this._randomMessageStarted) {
+        this._randomMessageStarted = true;
+        this.triggerRandomMessage();
+      }
+
+      
+      // console.log(this.isActive, this.offerExist, this._randomMessageStarted)
+      // this.canvas.width = window.innerWidth
+      // this.canvas.height = window.innerHeight
       //Clear off the canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -92,12 +132,16 @@ class Overworld {
         requestAnimationFrame(stepFN)
     }
     requestAnimationFrame(stepFN);
+
+    
  }
 
  bindActionInput() {
   new KeyPressListener("Enter", () => {
     //Is there a person here to talk to?
     this.map.checkForActionCutscene()
+    this.position.push([this.map.gameObjects.hero.x / 16, this.map.gameObjects.hero.y / 16])
+    console.log("Hero Position: ", this.position)
  })
 
  new KeyPressListener("KeyF", () => {
@@ -111,7 +155,7 @@ class Overworld {
 })
 
   new KeyPressListener("KeyQ", () => {
-    //Pull up/Put away phone
+    //Pull up phone
     if (!this.map.isCutscenePlaying) {
       this.map.startCutscene([
         { type: "phone"}
@@ -177,6 +221,7 @@ class Overworld {
   this.directionInput.init();
 
   this.startGameLoop();
+  // after a random amount of time a TextMessage will be displayed
 
 
   this.map.startCutscene([

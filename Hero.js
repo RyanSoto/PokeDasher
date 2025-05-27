@@ -20,7 +20,6 @@ class Hero extends GameObject {
     new KeyPressListener("KeyB", () => {
       if (this.movingProgressRemaining === 0 && playerState.storyFlags["BIKE"]) {
         if (this.isBiking) {
-          console.log("Bike Off");  
           this.isBiking = false;
           this.speed = 1;
           this.directionUpdate = {
@@ -30,7 +29,6 @@ class Hero extends GameObject {
             "right": ["x", this.speed],
           };
         } else {
-          console.log("Bike On");
           this.isBiking = true;
           this.speed = 4;
           this.directionUpdate = {
@@ -46,7 +44,6 @@ class Hero extends GameObject {
     new KeyPressListener("KeyY", () => {
       if (this.movingProgressRemaining === 0) {
         if (this.isBiking) {
-          console.log("Bike Off");  
           this.isBiking = false;
           this.speed = 1;
           this.directionUpdate = {
@@ -56,7 +53,6 @@ class Hero extends GameObject {
             "right": ["x", this.speed],
           };
         } else {
-          console.log("Bike On");
           this.isBiking = true;
           this.speed = 4;
           this.directionUpdate = {
@@ -101,14 +97,14 @@ class Hero extends GameObject {
    
     if (behavior.type === "walk") {
       //Bump if on bike and space is not free
-      if (state.map.isSpaceTaken(this.x, this.y, this.direction) && this.isBiking === true) {
+      // if (state.map.isSpaceTaken(this.x, this.y, this.direction) && this.isBiking === true) {
 
-        this.bikeBump(state)
-        behavior.retry && setTimeout(() => {
-          this.startBehavior(state, behavior)
-        }, 10);
-        return;
-      }
+      //   this.bikeBump(state)
+      //   behavior.retry && setTimeout(() => {
+      //     this.startBehavior(state, behavior)
+      //   }, 10);
+      //   return;
+      // }
       //Stop here if space is not free
       if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
        
@@ -264,7 +260,7 @@ class Hero extends GameObject {
     this.movingProgressRemaining -= 1;
 
     // Check current position
-    console.log((this.x / 16), (this.y / 16))
+    // console.log((this.x / 16), (this.y / 16))
 
     if (this.movingProgressRemaining === 0) {
       //We finished the walk!

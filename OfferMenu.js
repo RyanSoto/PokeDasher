@@ -27,6 +27,7 @@ class OfferMenu {
         button.addEventListener("click", () => {
           const chosenOption = this.options[ Number(button.dataset.button) ];
           chosenOption.handler();
+          this.end()
         })
         button.addEventListener("mouseenter", () => {
           button.focus();
@@ -58,9 +59,11 @@ class OfferMenu {
     
       //Description box element
       this.descriptionElement = document.createElement("div");
-      this.descriptionElement.classList.add("DescriptionBox");
+      this.descriptionElement.classList.add("PutAwayMsg");
       this.descriptionElement.innerHTML = (`<p>Press Q to put away your phone.</p>`);
-      this.descriptionElementText = this.descriptionElement.querySelector("p");
+      // this.descriptionElementText = this.descriptionElement.querySelector("p");
+      document.querySelector(".iphone_screen").appendChild(this.descriptionElement);
+
 
       //Clean up bindings
       this.up.unbind();

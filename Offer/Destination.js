@@ -3,7 +3,7 @@ class Destination extends GameObject{
         super(config);
         this.sprite = new Sprite({
             gameObject: this,
-            src: "images/Objects/foodreceptacle.png",
+            src: config.src || "images/Objects/foodreceptacle.png",
             animations: {
                 "Empty" :  [ [0,0] ],
                 "Full" :   [ [1,0] ],
