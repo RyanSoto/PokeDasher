@@ -86,25 +86,80 @@ class Hero extends GameObject {
     }
   }
 
+  // Exhaustion
+  exhaustionChecker(state) {
+      // if (playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
+      // // state.map.isPaused = true
+
+      //   state.map.startCutscene([
+      //     { type: "shoutMessage", text:"You're took too much damage!"} , 
+      //     { type: "shoutMessage", text:"Time to call it a day."} , 
+      //     // { type: "addStoryFlag", flag: "EXHAUSTED" },
+      //     { type: "sleep"},
+      //     // { type: "removeStoryFlag", flag: "EXHAUSTED" },
+      //     { type: "changeMap", map: "Starville", 
+      //           x: utils.withGrid(12),
+      //           y: utils.withGrid(21),
+      //           direction: "down"
+      //         },
+      //     { type: "textMessage", text:"You slept like a rock!"}, 
+      //     ])
+      //   }
+
+
+    if (playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag = "DEATH"]) {
+    // state.map.isPaused = true
+
+    state.map.startCutscene([
+      { type: "shoutMessage", text:"You're exhausted!"} , 
+      { type: "shoutMessage", text:"Time to call it a day."} , 
+      // { type: "addStoryFlag", flag: "EXHAUSTED" },
+      { type: "sleep"},
+      // { type: "removeStoryFlag", flag: "EXHAUSTED" },
+      { type: "changeMap", map: "Starville", 
+            x: utils.withGrid(12),
+            y: utils.withGrid(21),
+            direction: "down"
+          },
+      { type: "textMessage", text:"You slept like a rock!"}, 
+      ])
+    }
+    // state.map.isPaused = false
+    
+  }
+
+  energyDrainer() {
+    // Function to drain energy over time
+    this.energyDrainer = () => {
+      if (playerState.players.p1.enr >= 0) {
+        playerState.players.p1.enr -= 0.1; // Drain energy by 0.1 every second
+        utils.emitEvent("PlayerStateUpdated");
+      }
+    };
+  }
+
   startBehavior(state, behavior) {
+    this.exhaustionChecker(state)
 
     if (!this.isMounted) {
       return;
     }
 
+    this.energyDrainer()
+
     //Set character direction to whatever behavior has
     this.direction = behavior.direction;
    
     if (behavior.type === "walk") {
-      //Bump if on bike and space is not free
-      // if (state.map.isSpaceTaken(this.x, this.y, this.direction) && this.isBiking === true) {
+      // Bump if on bike and space is not free
+      if (state.map.isSpaceTaken(this.x, this.y, this.direction) && this.isBiking === true) {
 
-      //   this.bikeBump(state)
-      //   behavior.retry && setTimeout(() => {
-      //     this.startBehavior(state, behavior)
-      //   }, 10);
-      //   return;
-      // }
+        this.bikeBump(state)
+        behavior.retry && setTimeout(() => {
+          this.startBehavior(state, behavior)
+        }, 10);
+        return;
+      }
       //Stop here if space is not free
       if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
        
@@ -232,23 +287,39 @@ class Hero extends GameObject {
         { type: "textMessage", text:"Oof!"} ,
       ])
     }
-      this.updateSprite(state);
-      if (playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag == "DEATH"]) {
+      if (playerState.players.p1.enr <= 0) {
 
         state.map.startCutscene([
+          { type: "addStoryFlag", flag: "DEATH" },
           { type: "shoutMessage", text:"Too much damage!"} , 
           { type: "shoutMessage", text:"You're done!"} , 
-          { type: "addStoryFlag", flag: "DEATH" },
+          { type: "textMessage", text:"You will pay $50 for treatment at the hospital."},
+          { type: "changeMap", map: "Starville", 
+              x: utils.withGrid(73),
+              y: utils.withGrid(43),
+              direction: "down"
+            },
+          { type: "removeStoryFlag", flag: "DEATH" },
+          { type: "death"},
         ])
       }
+
+
+      this.updateSprite(state);
     }
   }
 
   drinkUp() {
+    if ((playerState.players.p1.enr + 50) >= playerState.players.p1.maxEnr) {
+    playerState.players.p1.enr = playerState.players.p1.maxEnr;
+    playerState.players.p1.drinks -= 1;
+    utils.emitEvent("PlayerStateUpdated"); 
+    return
+    }
     if (playerState.players.p1.enr >= 50) {
       playerState.players.p1.enr = 100;
     } else {
-    playerState.players.p1.enr += 50;}
+      playerState.players.p1.enr += 50;}
     playerState.players.p1.drinks -= 1;
     utils.emitEvent("PlayerStateUpdated"); 
     return

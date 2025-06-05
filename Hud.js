@@ -21,11 +21,11 @@ class Hud {
 
         const {playerState} = window;
         playerState.lineup.forEach(key => {
-            const playa = playerState.players[key];
+            const player = playerState.players[key];
             const scoreboard = new Player({
                 id: key,
-                ...Runners[playa.playerId],
-                ...playa,
+                ...Runners[player.playerId],
+                ...player,
             },null)
             scoreboard.createElement();
             this.scoreboards.push(scoreboard);

@@ -7,6 +7,7 @@ class Offer {
         // this.randTip = 0;
         this.tip = 5.50;
         this.pay = 0
+        this.timeToComplete = 0.0;
     
     }
 
@@ -56,6 +57,8 @@ class Offer {
         this.pickUp = resIdConfig.pickUpVal
         this.resTip = resIdConfig.Tip
         this.calcTip(this.resTip)
+        this.timeToComplete = 60000 * 5 // 5 minutes to complete the order
+
 
         this.pay = this.basePay + this.distPay + this.tipCal;
         this.displayPay = formatter.format(this.pay)
@@ -96,7 +99,7 @@ class Offer {
                             { type: "textMessage", text: "You accepted the order" }
                     ]);
                     console.log("Accepted Offer");
-                    playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
+                    playerState.players.p1.orders = [this.resName , this.address, this.displayPay, this.timeToComplete];
                     console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
                     playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
                     utils.emitEvent("PlayerStateUpdated"); 

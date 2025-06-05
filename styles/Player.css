@@ -63,14 +63,14 @@
     height: 16px;
   }
   
-  .Player_life-container {
+  .Player_life-container, .Player_Max_life-container {
     position: absolute;
     left:20px;
     top:4px;
     width: 26px;
     height: 3px;
   }
-  .Player_life-container > rect {
+  .Player_life-container, .Player_Max_life-container > rect {
     transition: width 0.2s;
   }
   

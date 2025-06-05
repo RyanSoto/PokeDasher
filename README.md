@@ -42,8 +42,12 @@ more time
 
 Night/Day cycle
 
-stamina depletes through out the day, can be restored with item
+stamina depletes through out the day, can be restored with item. if already on a deliver player will incur a penalty
 
 experience
 
+stored stats
+
 level editor
+
+Fix drinking animation: problem, needs to wait for current animation to finish

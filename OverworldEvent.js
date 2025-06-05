@@ -172,11 +172,20 @@ class OverworldEvent {
     }
   
   death(resolve){
-    window.playerState.players.p1.enr = 100
-    if (window.playerState.players.p1.money >= 50) {
-      window.playerState.players.p1.money -= 50
+    playerState.players.p1.maxEnr -= 30
+    playerState.players.p1.enr = playerState.players.p1.maxEnr
+    if (playerState.players.p1.money >= 50) {
+      playerState.players.p1.money -= 50
     }
-    else{window.playerState.players.p1.money = 0}
+    else{playerState.players.p1.money = 0}
+    utils.emitEvent("PlayerStateUpdated"); 
+
+    resolve();
+  } 
+  
+  sleep(resolve){
+    playerState.players.p1.maxEnr = 100
+    playerState.players.p1.enr = playerState.players.p1.maxEnr
     utils.emitEvent("PlayerStateUpdated"); 
     resolve();
   } 

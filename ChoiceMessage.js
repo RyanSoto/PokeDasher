@@ -57,7 +57,17 @@ class ChoiceMessage {
                 description: "Purchase a drink for $5",
                 id: "purchaseBike",
                 handler: () => {
-                    if (playerState.players.p1.money < 5) {
+                if (playerState.players.p1.drinks >= 3) {
+                    this.map.startCutscene([
+                            { type: "textMessage", text: "You can't hold anymore drinks" },
+                            // { who: "hero", type: "walk", direction: "down" }
+                    ]);
+                    setTimeout(() => {
+                      document.getElementById("finishShopping").focus();
+                    }, 10)
+                    // this.close();  
+                  }
+                   else if (playerState.players.p1.money < 5) {
                     this.map.startCutscene([
                             { type: "textMessage", text: "You don't have enough money" },
                             // { who: "hero", type: "walk", direction: "down" },

@@ -8,12 +8,19 @@ class Player {
 
         let formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
         this.money = formatter.format(this.money)
+        this.drinks = this.drinks || 0;
     }
 
     get enrPercent() {
-      const percent = this.enr / this.maxEnr * 100;
+      const percent = this.enr;
       return percent > 0 ? percent : 0;
     }
+
+    get maxEnrPercent() {
+      const maxPercent = this.maxEnr;
+      return maxPercent > 0 ? maxPercent : 0;
+    }
+
     get xpPercent() {
         return this.xp / this.maxXp * 100;
       }
@@ -37,6 +44,10 @@ class Player {
           <div class="Player_character_crop">
           
           </div>
+          <svg viewBox="0 0 26 3" class="Player_Max_life-container">
+            <rect x=0 y=0 width="0%" height=1 fill="#82ff71" fill-opacity="0.4"/>
+            <rect x=0 y=1 width="0%" height=2 fill="#3ef126" fill-opacity="0.4"/>
+          </svg>
           <svg viewBox="0 0 26 3" class="Player_life-container">
             <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
             <rect x=0 y=1 width="0%" height=2 fill="#3ef126" />
@@ -55,6 +66,7 @@ class Player {
         this.playerElement.setAttribute("data-team", this.team );
     
         this.enrFills = this.hudElement.querySelectorAll(".Player_life-container > rect");
+        this.enrMaxFills = this.hudElement.querySelectorAll(".Player_Max_life-container > rect");
         this.xpFills = this.hudElement.querySelectorAll(".Player_xp-container > rect");
       }
     
@@ -70,6 +82,7 @@ class Player {
     
         //Update enr & XP percent fills
         this.enrFills.forEach(rect => rect.style.width = `${this.enrPercent}%`)
+        this.enrMaxFills.forEach(rect => rect.style.width = `${this.maxEnrPercent}%`)
         this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
         //Update drinks
         this.hudElement.querySelector(".Player_character_crop").innerHTML = "";
@@ -84,7 +97,6 @@ class Player {
         let formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
         this.money = formatter.format(this.money)
         this.hudElement.querySelector(".Player_status").innerText = this.money        
-        this.hudElement.querySelector(".Drinks").innerText = this.drinks
     
         //Update level on screen
         this.hudElement.querySelector(".Player_level").innerText = this.level;

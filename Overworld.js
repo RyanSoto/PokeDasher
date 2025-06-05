@@ -9,71 +9,83 @@ class Overworld {
 
  }
 
- gameLoopStepWork(delta){
-      //Check for 0 health condition
-      if (playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
+//Check for 0 health condition
+ noHealthChecker() {
+  if (playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
+    this.map.startCutscene([
+      { type: "changeMap", map: "Starville", 
+          x: utils.withGrid(73),
+          y: utils.withGrid(43),
+          direction: "down"
+        },
+      { type: "death"},
+      { type: "removeStoryFlag", flag: "DEATH" },
+      { type: "textMessage", text:"You have been discharged from the hospital. Paid $50 for treatment."} , 
+      // { type: "textMessage", text:"$50 was removed from your bank."} , 
+    ])
+  }
+ }
 
-        this.map.startCutscene([
-          { type: "changeMap", map: "Starville", 
-              x: utils.withGrid(73),
-              y: utils.withGrid(43),
-              direction: "down"
-            },
-          { type: "death"},
-          { type: "removeStoryFlag", flag: "DEATH" },
-          { type: "textMessage", text:"You have been discharged from the hospital. Paid $50 for treatment."} , 
-          // { type: "textMessage", text:"$50 was removed from your bank."} , 
-        ])
-      }
+ endGameChecker() {
+  if (playerState.players.p1.money >= 1000 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
+    this.map.startCutscene([
+      { type: "shoutMessage", text:"Congrats on nothing!"} , 
+      { type: "shoutMessage", text:"The End?"} , 
+      { type: "addStoryFlag", flag: "END_GAME" },
+    ])
+    // playerState.players.p1.money -= 10
+    utils.emitEvent("PlayerStateUpdated"); 
+  }
+ }
+
+ randomOfferModule() {
+  // Function to trigger a random message if isActive is true
+  this.isActive = this.isActive ?? true; // initialize if undefined
+  this.offerExist = this.offerExist ?? false; // initialize if undefined
+
+  this.triggerRandomMessage = () => {
+    
+    if (!this.randomMessageStarted) return;
+    if (this.offerExist) return; 
+    if (!this.isActive) return;
+    const randomDelay = Math.floor(Math.random() * 5000) + 1000; // y to x seconds
+    console.log("Random message will trigger in", randomDelay, "ms");
+    setTimeout(() => {
+      if (!this.isActive) return;
+      this.isActive = false; // Prevent further triggers during cutscene
+      this.offerExist = true; // Set offerExist to true to prevent further triggers
+        const phoneNotification = new PhoneNotification({
+          map: this.map,
+          // offerExist: this.offerExist,
+          onComplete: () => {
+            this.offerExist = false;
+          }
+        })
+      
+    phoneNotification.init(document.querySelector(".game-container")).then(() => {
+    this.isActive = true; // Reactivate after cutscene ends
+    this.randomMessageStarted = false
+    this.triggerRandomMessage(); // Schedule next message
+      });
+    }, randomDelay);
+  };
+
+  // Start the random message loop if active
+  if (this.isActive && !this.offerExist && !this.randomMessageStarted && !playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] && !playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
+    this.randomMessageStarted = true;
+    this.triggerRandomMessage();
+  }
+ }
+
+
+
+ gameLoopStepWork(delta){
 
       //Check for end game condition
-      if (playerState.players.p1.money >= 1000 && !playerState.storyFlags[this.storyFlag = "END_GAME"]) {
-
-        this.map.startCutscene([
-          { type: "shoutMessage", text:"Congrats on nothing!"} , 
-          { type: "shoutMessage", text:"The End?"} , 
-          { type: "addStoryFlag", flag: "END_GAME" },
-        ])
-        // playerState.players.p1.money -= 10
-        utils.emitEvent("PlayerStateUpdated"); 
-      }
+      this.endGameChecker()
 
       // Function to trigger a random message if isActive is true
-      this.isActive = this.isActive ?? true; // initialize if undefined
-      this.offerExist = this.offerExist ?? false; // initialize if undefined
-
-      this.triggerRandomMessage = () => {
-        
-        if (!this._randomMessageStarted) return;
-        if (this.offerExist) return; 
-        if (!this.isActive) return;
-        const randomDelay = Math.floor(Math.random() * 5000) + 2000; // 10 + 5 seconds
-        console.log("Random message will trigger in", randomDelay, "ms");
-        setTimeout(() => {
-          if (!this.isActive) return;
-          this.isActive = false; // Prevent further triggers during cutscene
-          this.offerExist = true; // Set offerExist to true to prevent further triggers
-            const phoneNotification = new PhoneNotification({
-              map: this.map,
-              // offerExist: this.offerExist,
-              onComplete: () => {
-                this.offerExist = false;
-              }
-            })
-          
-        phoneNotification.init(document.querySelector(".game-container")).then(() => {
-        this.isActive = true; // Reactivate after cutscene ends
-        this._randomMessageStarted = false
-        this.triggerRandomMessage(); // Schedule next message
-          });
-        }, randomDelay);
-      };
-
-      // Start the random message loop if active
-      if (this.isActive && !this.offerExist && !this._randomMessageStarted && !playerState.storyFlags[this.storyFlag = "ORDER_ACCEPTED"] && !playerState.storyFlags[this.storyFlag = "ORDER_TAKEN"]) {
-        this._randomMessageStarted = true;
-        this.triggerRandomMessage();
-      }
+      this.randomOfferModule()
 
       
       // console.log(this.isActive, this.offerExist, this._randomMessageStarted)
