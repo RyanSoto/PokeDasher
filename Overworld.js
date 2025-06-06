@@ -6,6 +6,7 @@ class Overworld {
    this.map = null;
    this.hero = null;
    this.position = []
+   this.movingProgressRemaining = config.movingProgressRemaining || 0;
 
  }
 
@@ -176,7 +177,8 @@ class Overworld {
   })
 
   new KeyPressListener("KeyP", () => { 
-    if (!this.map.isCutscenePlaying && playerState.players.p1.drinks > 0) {
+    console.log(this.map)
+    if (!this.map.isCutscenePlaying && playerState.players.p1.drinks > 0 && this.map.gameObjects.hero.movingProgressRemaining == 0 ) {
       this.map.startCutscene([
         {who:"hero", type: "drink", direction: "down", time: 1500}
       ])

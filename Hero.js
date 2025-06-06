@@ -88,27 +88,8 @@ class Hero extends GameObject {
 
   // Exhaustion
   exhaustionChecker(state) {
-      // if (playerState.players.p1.enr <= 0 && playerState.storyFlags[this.storyFlag = "DEATH"]) {
-      // // state.map.isPaused = true
-
-      //   state.map.startCutscene([
-      //     { type: "shoutMessage", text:"You're took too much damage!"} , 
-      //     { type: "shoutMessage", text:"Time to call it a day."} , 
-      //     // { type: "addStoryFlag", flag: "EXHAUSTED" },
-      //     { type: "sleep"},
-      //     // { type: "removeStoryFlag", flag: "EXHAUSTED" },
-      //     { type: "changeMap", map: "Starville", 
-      //           x: utils.withGrid(12),
-      //           y: utils.withGrid(21),
-      //           direction: "down"
-      //         },
-      //     { type: "textMessage", text:"You slept like a rock!"}, 
-      //     ])
-      //   }
-
 
     if (playerState.players.p1.enr <= 0 && !playerState.storyFlags[this.storyFlag = "DEATH"]) {
-    // state.map.isPaused = true
 
     state.map.startCutscene([
       { type: "shoutMessage", text:"You're exhausted!"} , 
