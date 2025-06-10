@@ -10,7 +10,7 @@ class ChoiceMessage {
         this.onComplete = onComplete;
         this.element = null;
 
-        root = [
+        this.root = [
             {
                 label: "Purchase bike",
                 description: "Purchase a bike for $100",
@@ -23,7 +23,7 @@ class ChoiceMessage {
                     ]);
                     setTimeout(() => {
                       document.getElementById("finishShopping").focus();
-                    }, 10)
+                    }, 100)
                     
                     // this.close();
                 }else if (playerState.players.p1.money < 10) {
@@ -31,9 +31,9 @@ class ChoiceMessage {
                             { type: "textMessage", text: "You don't have enough money" },
                             // { who: "hero", type: "walk", direction: "down" },
                     ]);
-                    setTimeout(() => {
+                    // setTimeout(() => {
                       document.getElementById("finishShopping").focus();
-                    }, 10)
+                    // }, 10)
                     // this.close();
                   } else {
                     this.map.startCutscene([
@@ -106,15 +106,12 @@ class ChoiceMessage {
                 }
             }
             ]
+
+      console.log(this.root);
+
     }
 
-    getOptions(pageKey) {
 
-        if (pageKey === "root") {
-            return root;
-        }
-        return [];
-    }
 
     setOptions(options) {
       this.options = options;
@@ -180,9 +177,8 @@ class ChoiceMessage {
     init(container) {
 
 
-      
       this.createElement();
-      this.setOptions(root);
+      this.setOptions(this.root);
       (this.descriptionContainer || container);
       container.appendChild(this.element);
 
@@ -221,54 +217,3 @@ class ChoiceMessage {
     }
 }
 
-root = [
-            {
-                label: "Purchase bike",
-                description: "Purchase a bike for $100",
-                handler: () => {
-                    this.map.startCutscene([
-                            { type: "addStoryFlag", flag: "BIKE"},
-                            { type: "textMessage", text: "You purchase the bike" }
-
-                    ]);
-                    console.log("Purchase Bike");
-                    // playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
-                    // console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
-                    // playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
-                    utils.emitEvent("PlayerStateUpdated"); 
-                    
-                    this.close();
-                    
-                }
-             },
-             {
-                label: "Purchase Energy Drink",
-                description: "Purchase an Energy Drink for $5",
-                handler: () => {
-                    this.map.startCutscene([
-                            { type: "textMessage", text: "You purchase the drink" },
-
-                    ]);
-                    console.log("Purchased Drink");
-                    playerState.players.p1.drinks += 1;
-
-                    // playerState.players.p1.orders = [this.resName , this.address, this.displayPay];
-                    // console.log("Offer :", playerState.players.p1.orders , "Player's Money: ", playerState.players.p1.money );
-                    // playerState.players.p1.potentialPay = this.pay + playerState.players.p1.money;
-                    utils.emitEvent("PlayerStateUpdated"); 
-                    
-                    this.close();
-                    
-                }
-             },
-            {
-                label: "Finish Shopping",
-                description: "Finish Shopping",
-                handler: () => {
-                    // this.map.startCutscene([
-                    // { type: "textMessage", text: "Order Denied" }
-                    // ]);
-                    this.close();
-                }
-            }
-            ]

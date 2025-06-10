@@ -314,7 +314,7 @@ window.OverworldMaps = {
           events: [
 
               { type: "textMessage", text: "Got everything you need?" , faceHero: "npc1"},
-              { type: "choiceMessage", text: "Please, have a look." , faceHero: "npc1"},
+              { type: "choiceMessage", faceHero: "npc1"},
 
           ]   
         },
@@ -350,7 +350,7 @@ window.OverworldMaps = {
           events: [
 
               { type: "textMessage", text: "Got everything you need?" , faceHero: "npc1"},
-              { type: "choiceMessage", text: "Please, have a look." , faceHero: "npc1"},
+              { type: "choiceMessage", faceHero: "npc1"},
 
           ]   
         },
@@ -386,7 +386,7 @@ window.OverworldMaps = {
           events: [
 
               { type: "textMessage", text: "Got everything you need?" , faceHero: "npc1"},
-              { type: "choiceMessage", text: "Please, have a look." , faceHero: "npc1"},
+              { type: "choiceMessage", faceHero: "npc1"},
 
           ]   
         },

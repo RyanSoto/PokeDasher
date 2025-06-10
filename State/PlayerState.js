@@ -1,7 +1,7 @@
 class PlayerState {
     constructor(config) {
       config = config || {};
-      console.log("PlayerState config", config.players.p1.money);
+      console.log("PlayerState config", config);
 
       this.players = {
         "p1": {
