@@ -185,8 +185,17 @@ class OverworldEvent {
   
   sleep(resolve){
     playerState.players.p1.maxEnr = 100
+    playerState.players.p1.day += 1
     playerState.players.p1.enr = playerState.players.p1.maxEnr
+    if (playerState.players.p1.day > 6 /*&& playerState.players.p1.day % 7 === 0*/) {
+      if (playerState.players.p1.money <= 25) {
+        playerState.players.p1.money = 0;
+      } else {
+        playerState.players.p1.money -= 25;
+      }
+    }
     utils.emitEvent("PlayerStateUpdated"); 
+    localStorage.setItem("player", JSON.stringify(playerState));
     resolve();
   } 
 

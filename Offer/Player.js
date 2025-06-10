@@ -9,6 +9,7 @@ class Player {
         let formatter = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',});
         this.money = formatter.format(this.money)
         this.drinks = this.drinks || 0;
+        this.day = this.day || 1;
     }
 
     get enrPercent() {
@@ -99,7 +100,7 @@ class Player {
         this.hudElement.querySelector(".Player_status").innerText = this.money        
     
         //Update level on screen
-        this.hudElement.querySelector(".Player_level").innerText = this.level;
+        this.hudElement.querySelector(".Player_level").innerText = this.day;
     
       }
     

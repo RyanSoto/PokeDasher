@@ -7,6 +7,7 @@ class Overworld {
    this.hero = null;
    this.position = []
    this.movingProgressRemaining = config.movingProgressRemaining || 0;
+   
 
  }
 
