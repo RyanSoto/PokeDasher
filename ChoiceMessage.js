@@ -18,8 +18,7 @@ class ChoiceMessage {
                 handler: () => {
                 if (playerState.storyFlags["BIKE"]){
                     this.map.startCutscene([
-                            { type: "textMessage", text: "You already have a bike" },
-                            // { who: "hero", type: "walk", direction: "down" }
+                            { type: "shopTextMessage", text: "You already have a bike" },
                     ]);
                     setTimeout(() => {
                       document.getElementById("finishShopping").focus();
@@ -28,8 +27,7 @@ class ChoiceMessage {
                     // this.close();
                 }else if (playerState.players.p1.money < 10) {
                     this.map.startCutscene([
-                            { type: "textMessage", text: "You don't have enough money" },
-                            // { who: "hero", type: "walk", direction: "down" },
+                            { type: "shopTextMessage", text: "You don't have enough money" },
                     ]);
                     // setTimeout(() => {
                       document.getElementById("finishShopping").focus();
@@ -38,8 +36,7 @@ class ChoiceMessage {
                   } else {
                     this.map.startCutscene([
                             { type: "addStoryFlag", flag: "BIKE"},
-                            // { who: "hero", type: "walk", direction: "down" },
-                            { type: "textMessage", text: "You purchased the bike" }
+                            { type: "shopTextMessage", text: "You purchased the bike" }
 
                     ]);
                     console.log("Purchase Bike");
@@ -48,7 +45,6 @@ class ChoiceMessage {
                     setTimeout(() => {
                       document.getElementById("finishShopping").focus();
                     }, 10)
-                    // this.close();
                   }
                 }
              },            
@@ -59,18 +55,15 @@ class ChoiceMessage {
                 handler: () => {
                 if (playerState.players.p1.drinks >= 3) {
                     this.map.startCutscene([
-                            { type: "textMessage", text: "You can't hold anymore drinks" },
-                            // { who: "hero", type: "walk", direction: "down" }
+                            { type: "shopTextMessage", text: "You can't hold anymore drinks" },
                     ]);
                     setTimeout(() => {
                       document.getElementById("finishShopping").focus();
                     }, 10)
-                    // this.close();  
                   }
                    else if (playerState.players.p1.money < 5) {
                     this.map.startCutscene([
-                            { type: "textMessage", text: "You don't have enough money" },
-                            // { who: "hero", type: "walk", direction: "down" },
+                            { type: "shopTextMessage", text: "You don't have enough money" },
                     ]);
                     setTimeout(() => {
                       document.getElementById("finishShopping").focus();
@@ -78,9 +71,7 @@ class ChoiceMessage {
                     // this.close();
                   } else {
                     this.map.startCutscene([
-                            // { type: "addStoryFlag", flag: "BIKE"},
-                            // { who: "hero", type: "walk", direction: "down" },
-                            { type: "textMessage", text: "You purchased the drink" },
+                            { type: "shopTextMessage", text: "You purchased the drink" },
                     ]);
                     console.log("Purchase drink");
                     playerState.players.p1.drinks += 1;
@@ -100,15 +91,11 @@ class ChoiceMessage {
                 handler: () => {
                     this.map.startCutscene([
                     { type: "textMessage", text: "Thanks for coming in! Come back and see us real soon." },
-                    { who: "hero", type: "walk", direction: "down" }
                     ]);
                     this.close();
                 }
             }
             ]
-
-      console.log(this.root);
-
     }
 
 
