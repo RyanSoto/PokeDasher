@@ -90,7 +90,7 @@ class Player {
         for (let i = 0; i < this.drinks; i++) {
             const drinkImg = document.createElement("img");
             drinkImg.classList.add("Drinks");
-            drinkImg.src = "../images/Objects/monster_hud.png";
+            drinkImg.src = "./images/Objects/monster_hud.png";
             this.hudElement.querySelector(".Player_character_crop").appendChild(drinkImg);
         }
 
