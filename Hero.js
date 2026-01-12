@@ -313,7 +313,7 @@ class Hero extends GameObject {
     this.movingProgressRemaining -= 1;
 
     // Check current position
-    // console.log((this.x / 16), (this.y / 16))
+    // console.log((this.x ), (this.y ))
 
     if (this.movingProgressRemaining === 0) {
       //We finished the walk!

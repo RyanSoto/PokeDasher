@@ -79,8 +79,6 @@ class Overworld {
   }
  }
 
-
-
  gameLoopStepWork(delta){
 
       //Check for end game condition
@@ -122,7 +120,7 @@ class Overworld {
       this.map.drawUpperImage(this.ctx, cameraPerson);
  }
  
-  startGameLoop() {
+ startGameLoop() {
 
     let previousMs;
     const step = 1/60;
@@ -146,8 +144,6 @@ class Overworld {
         requestAnimationFrame(stepFN)
     }
     requestAnimationFrame(stepFN);
-
-    
  }
 
  bindActionInput() {
@@ -236,7 +232,6 @@ class Overworld {
   this.directionInput.init();
 
   this.startGameLoop();
-  // after a random amount of time a TextMessage will be displayed
 
 
   this.map.startCutscene([

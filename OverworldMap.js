@@ -261,8 +261,7 @@ window.OverworldMaps = {
       },
     },
 
-    walls: 
-    collisionCoords = utils.collisionDetection(house0Collision),
+    walls: collisionCoords = utils.collisionDetection(house0Collision),
     
     cutsceneSpaces: {
 

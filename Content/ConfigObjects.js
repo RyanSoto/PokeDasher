@@ -264,77 +264,77 @@
         type: "Destination",
         x: utils.withGrid(16), //65
         y: utils.withGrid(50), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_4"
       }),      
       dropOff5: ({
         type: "Destination",
         x: utils.withGrid(24), //65
         y: utils.withGrid(50), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_5"
       }),      
       dropOff6: ({
         type: "Destination",
         x: utils.withGrid(32), //65
         y: utils.withGrid(50), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_6"
       }),      
       dropOff7: ({
         type: "Destination",
         x: utils.withGrid(31), //65
         y: utils.withGrid(59), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_7"
       }),      
       dropOff8: ({
         type: "Destination",
         x: utils.withGrid(24), //65
         y: utils.withGrid(60), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_8"
       }),      
       dropOff9: ({
         type: "Destination",
         x: utils.withGrid(15), //65
         y: utils.withGrid(59), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_9"
       }),      
       dropOff10: ({
         type: "Destination",
         x: utils.withGrid(65), //65
         y: utils.withGrid(76), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_10"
       }),      
       dropOff11: ({
         type: "Destination",
         x: utils.withGrid(79), //65
         y: utils.withGrid(76), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_11"
       }),      
       dropOff12: ({
         type: "Destination",
         x: utils.withGrid(83), //65
         y: utils.withGrid(86), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_12"
       }),      
       dropOff13: ({
         type: "Destination",
         x: utils.withGrid(72), //65
         y: utils.withGrid(86), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_13"
       }),      
       dropOff14: ({
         type: "Destination",
         x: utils.withGrid(61), //65
         y: utils.withGrid(86), //19
-        src: "./images/characters/people/npc0.png",
+        src: "./images/characters/people/npc1.png",
         storyFlag: "DROPOFF_14"
       }),
 

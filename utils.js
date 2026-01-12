@@ -44,6 +44,7 @@ const utils = {
     for (let i = 0; i < collisionArray.length; i += 128) {
       collisionsMap.push(collisionArray.slice(i, 128 + i))
     };
+    // console.log({collisionsMap})
     let coordinates = [];
     for (let i = 0; i < collisionsMap.length; i++) {
       const row = collisionsMap[i];
@@ -53,6 +54,7 @@ const utils = {
         }
       }
     }
+    // console.log({coordinates});
     return coordinates;
   }  
 }
